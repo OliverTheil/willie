@@ -29,3 +29,27 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.scrollable {
+  background: rgba(50, 47, 47, 0.18);
+  height: 8rem;
+  overflow-y: scroll;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  * {
+    color: white;
+  }
+}
+
+.createButton {
+  margin-top: 6rem;
+  margin-bottom: 12rem;
+  background-color: greenyellow;
+  border-radius: 16px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+  }
+}

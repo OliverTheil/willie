@@ -2,6 +2,7 @@ html {
   font-size: 62.5%;
   background-image: url("/assets/img/forestBackground.jpg");
   background-size: contain;
+  scroll-behavior: smooth;
   * {
     font-family: "Poppins", sans-serif;
     font-weight: 200;
@@ -14,10 +15,6 @@ body {
   width: 100vw;
   max-width: 100%;
   margin: 0;
-
-  * {
-    border-radius: 4px;
-  }
 }
 
 p {
@@ -26,10 +23,10 @@ p {
 
 input {
   margin: 20px;
-  border: transparent;
+  border: 1px solid rgb(57, 124, 57);
+  background-color: rgba(33, 197, 88, 0.24);
   padding: 6px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  border-radius: 8px;
 }
 
 button {
@@ -39,6 +36,7 @@ button {
   height: 20px;
   width: 20px;
   background-color: white;
+  border-radius: 4px;
 
   &:hover {
     cursor: pointer;
@@ -50,14 +48,14 @@ button {
 section {
   width: 50%;
   padding: 1.6rem;
-  margin: 2.4rem;
   height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
   background: rgba(255, 255, 255, 0.36);
-  border-radius: 16px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.2px);
   -webkit-backdrop-filter: blur(5.2px);
@@ -80,6 +78,19 @@ textarea:focus {
   outline: none;
 }
 
+.margin--b--4rem {
+  margin-bottom: 4rem;
+}
+
+.margin--tb--4rem {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.borderRadius--16 {
+  border-radius: 16px !important;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -89,9 +100,6 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(48, 100, 4);
-}
-
-::-webkit-scrollbar-thumb:hover {
   background: rgb(134, 202, 8);
+  border-radius: 4px;
 }
