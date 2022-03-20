@@ -1,15 +1,3 @@
-.questions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 0px;
-  background: rgba(50, 47, 47, 0.18);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(9.7px);
-  -webkit-backdrop-filter: blur(9.7px);
-  border: 1px solid rgba(50, 47, 47, 1);
-}
-
 .questions__checkBox {
   padding: 20px 20px 20px 0;
   display: flex;
@@ -45,11 +33,15 @@
 
 .createButton {
   margin-top: 6rem;
-  margin-bottom: 12rem;
+  margin-bottom: 18rem;
   background-color: greenyellow;
   border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   &:hover {
-    transform: scale(1.2);
+    transition: ease-in-out 125ms;
+    transform: scale(1.1);
   }
 }

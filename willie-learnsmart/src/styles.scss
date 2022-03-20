@@ -1,8 +1,8 @@
 html {
   font-size: 62.5%;
-  background-image: url("/assets/img/forestBackground.jpg");
   background-size: contain;
   scroll-behavior: smooth;
+  height: 100%;
   * {
     font-family: "Poppins", sans-serif;
     font-weight: 200;
@@ -14,7 +14,10 @@ html {
 body {
   width: 100vw;
   max-width: 100%;
+  height: 100%;
   margin: 0;
+  background: linear-gradient(#8bdd08, #6cc407, #20a006, #045516);
+  background-size: 500% 500%;
 }
 
 p {
@@ -23,10 +26,12 @@ p {
 
 input {
   margin: 20px;
-  border: 1px solid rgb(57, 124, 57);
-  background-color: rgba(33, 197, 88, 0.24);
+  border: transparent;
+  background: rgba(134, 202, 8, 0.767);
   padding: 6px;
   border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 button {
@@ -41,7 +46,7 @@ button {
   &:hover {
     cursor: pointer;
     transform: scale(1.1);
-    background-color: rgb(147, 218, 17);
+    background: rgb(134, 202, 8);
   }
 }
 
@@ -56,7 +61,7 @@ section {
   background: rgba(255, 255, 255, 0.36);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   backdrop-filter: blur(5.2px);
   -webkit-backdrop-filter: blur(5.2px);
 
