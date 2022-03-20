@@ -1,1 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  font-size: 62.5%;
+  background-image: url("/assets/img/forestBackground.jpg");
+  background-size: contain;
+  * {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    color: black;
+    font-size: 2.8rem;
+  }
+}
+
+body {
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+
+  * {
+    border-radius: 4px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  margin: 20px;
+  border: transparent;
+  padding: 6px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+button {
+  margin-left: 26px;
+  margin-right: 26px;
+  border: none;
+  height: 20px;
+  width: 20px;
+  background-color: white;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: rgb(147, 218, 17);
+  }
+}
+
+section {
+  width: 50%;
+  padding: 1.6rem;
+  margin: 2.4rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.36);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.2px);
+  -webkit-backdrop-filter: blur(5.2px);
+
+  @media (max-width: 1000px) {
+    width: 90%;
+  }
+}
+
+span {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(48, 100, 4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(134, 202, 8);
+}
