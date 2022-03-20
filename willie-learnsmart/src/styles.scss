@@ -17,11 +17,18 @@ body {
   height: 100%;
   margin: 0;
   background: linear-gradient(#8bdd08, #6cc407, #20a006, #045516);
-  background-size: 500% 500%;
+  background-size: 600% 600%;
+  @media (max-width: 650px) {
+    background-size: 1000% 1000%;
+  }
 }
 
 p {
   margin: 0;
+
+  @media (max-width: 650px) {
+    font-size: 2rem;
+  }
 }
 
 input {
@@ -47,6 +54,10 @@ button {
     cursor: pointer;
     transform: scale(1.1);
     background: rgb(134, 202, 8);
+  }
+
+  @media (max-width: 650px) {
+    margin-left: 0;
   }
 }
 

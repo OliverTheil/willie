@@ -1,0 +1,10 @@
+img {
+  margin-top: 12rem;
+  width: 50%;
+  height: fit-content;
+
+  @media (max-width: 1000px) {
+    margin-top: 6rem;
+    width: 90%;
+  }
+}
