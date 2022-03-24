@@ -5,7 +5,7 @@
     Within 10 Minutes you get a complete plan for a week or month.
     <br /><br />
     Willie asks some questions about you and your way of learning. It works with
-    the promodoro principle, as well as an intelligent and individual learning
+    the pomodoro principle, as well as an intelligent and individual learning
     plan. <br /><br />
     <p>So let's go and answer the questions!</p>
   </span>
@@ -13,22 +13,44 @@
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What's your name?</p>
-  <input maxlength="14" type="text" />
+  <input
+    #userName
+    (keyup)="addName(userName.value)"
+    maxlength="14"
+    type="text"
+  />
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">How old are you?</p>
-  <input min="6" maxlength="3" type="number" />
+  <input
+    #userAge
+    (keyup)="addAge(userAge.value)"
+    min="6"
+    maxlength="3"
+    type="number"
+  />
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What do you want to learn?</p>
-  <input maxlength="14" type="text" />
+  <input
+    #userTopic
+    (keyup)="addTopic(userTopic.value)"
+    maxlength="14"
+    type="text"
+  />
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What's your goal? Describe!</p>
-  <input maxlength="20" type="text" />
+  <input
+    #userGoal
+    (keyup)="addGoal(userGoal.value)"
+    id="userGoal"
+    maxlength="20"
+    type="text"
+  />
 </section>
 
 <section>
@@ -304,5 +326,7 @@
 </section>
 
 <section class="createButton">
-  <p class="questions__singleQuestion">Click here to create your plan!</p>
+  <p (click)="createPlanBtn()" class="questions__singleQuestion">
+    Click here to create your plan!
+  </p>
 </section>
