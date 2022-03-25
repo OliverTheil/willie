@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Answers } from '../models/answers.class';
+import { Plan } from '../models/plan.class';
 
 @Component({
   selector: 'app-questions',
@@ -6,38 +8,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./questions.component.scss'],
 })
 export class QuestionsComponent implements OnInit {
-  userName: string = '';
-  userAge: any = 0;
-  userTopic: string = '';
-  userGoal: string = '';
+  answers: Answers;
+  plan: Plan;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.answers = new Answers();
+    this.plan = new Plan();
+  }
 
-  createPlanBtn() {}
+  createPlanBtn() {
+    console.table(this.answers);
+    console.table(this.plan);
+  }
 
   addName(userName: string) {
     if (userName) {
-      this.userName = userName;
+      this.answers.userName = userName;
     }
   }
 
-  addAge(userAge: string) {
+  addAge(userAge: number) {
     if (userAge) {
-      this.userAge = userAge;
+      this.answers.userAge = userAge;
     }
   }
 
   addTopic(userTopic: string) {
     if (userTopic) {
-      this.userTopic = userTopic;
+      this.answers.userTopic = userTopic;
     }
   }
 
   addGoal(userGoal: string) {
     if (userGoal) {
-      this.userGoal = userGoal;
+      this.answers.userGoal = userGoal;
     }
   }
+
+  addWorkPerDay() {}
+
+  addLifePerDay() {}
 }

@@ -27,6 +27,12 @@
   }
 }
 
+:disabled {
+  background-color: transparent;
+  border-color: transparent;
+  cursor: auto;
+}
+
 .scrollable {
   padding-top: 8rem;
   background: rgba(50, 47, 47, 0.18);

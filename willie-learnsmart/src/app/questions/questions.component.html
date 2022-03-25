@@ -25,7 +25,7 @@
   <p class="questions__singleQuestion">How old are you?</p>
   <input
     #userAge
-    (keyup)="addAge(userAge.value)"
+    (keyup)="addAge(+userAge.value)"
     min="6"
     maxlength="3"
     type="number"
@@ -61,39 +61,49 @@
 
 <section class="scrollable margin--b--4rem">
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.workPerDay = 0"></button>
+    <p>Work: I don't work at the moment</p>
+  </div>
+
+  <div class="questions__checkBox">
+    <button (click)="answers.workPerDay = 4"></button>
     <p>Work: 4 hours a day</p>
   </div>
 
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.workPerDay = 6"></button>
     <p>Work: 6 hours a day</p>
   </div>
 
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.workPerDay = 8"></button>
     <p>Work: 8 hours a day</p>
   </div>
 
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.workPerDay = 10"></button>
     <p>Work: 10 hours a day</p>
   </div>
 </section>
 
 <section class="scrollable margin--b--4rem borderRadius--16">
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.lifePerDay = 2"></button>
+    <p>Your life: 2 hours</p>
+  </div>
+
+  <div class="questions__checkBox">
+    <button (click)="answers.lifePerDay = 4"></button>
     <p>Your life: 4 hours</p>
   </div>
 
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.lifePerDay = 6"></button>
     <p>Your life: 6 hours</p>
   </div>
 
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.lifePerDay = 8"></button>
     <p>Your life: 8 hours</p>
   </div>
 </section>
@@ -106,19 +116,19 @@
 
 <section class="scrollable margin--b--4rem">
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.level = 1"></button>
     <p>Level 1: Easy to practice, easy to understand.</p>
   </div>
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.level = 2"></button>
     <p>Level 2: More practice, easy to understand.</p>
   </div>
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.level = 3"></button>
     <p>Level 3: More practice, hard to understand.</p>
   </div>
   <div class="questions__checkBox">
-    <button></button>
+    <button (click)="answers.level = 4"></button>
     <p>Level 4: Very much practice, very hard to understand.</p>
   </div>
 </section>

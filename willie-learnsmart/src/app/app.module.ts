@@ -7,16 +7,9 @@ import { QuestionsComponent } from './questions/questions.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    QuestionsComponent,
-    FrontpageComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, QuestionsComponent, FrontpageComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
