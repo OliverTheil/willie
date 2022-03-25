@@ -47,7 +47,17 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
-  addWorkPerDay() {}
+  pushNotPossibleDays(days: string) {
+    let noDay = this.answers.notPossibleDays;
+    if (days && !noDay.includes(days)) {
+      noDay.push(days);
+    }
+  }
 
-  addLifePerDay() {}
+  pushGoodDays(days: string) {
+    let goodDays = this.answers.goodDays;
+    if (days && !goodDays.includes(days)) {
+      goodDays.push(days);
+    }
+  }
 }
