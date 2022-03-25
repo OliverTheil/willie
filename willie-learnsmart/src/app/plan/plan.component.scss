@@ -1,0 +1,97 @@
+.plan {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+.backButton {
+  margin-top: 60px !important;
+  margin-bottom: 180px !important;
+  background-color: greenyellow;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  @media (min-width: 650px) {
+    &:hover {
+      transition: ease-in-out 125ms;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.backLink {
+  margin: 0 20px 10px 20px;
+  font-weight: 400;
+}
+
+.plan__allSessions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.plan__complete {
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plan__day {
+  min-width: 280px;
+  width: 95%;
+  margin: 16px;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  p {
+    font-weight: 400;
+    margin: 16px;
+  }
+}
+
+.plan__singleSession {
+  display: flex;
+  font-size: 1.8rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.effect {
+  margin: 6px;
+  padding: 16px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  backdrop-filter: blur(5.2px);
+  -webkit-backdrop-filter: blur(5.2px);
+}
+
+.min50 {
+  width: 60px;
+  height: 20px;
+  background: rgba(15, 85, 216, 0.705);
+}
+
+.min25 {
+  width: 40px;
+  height: 20px;
+  background: rgba(133, 18, 209, 0.589);
+}
