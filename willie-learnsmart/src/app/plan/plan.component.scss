@@ -33,10 +33,11 @@ h1 {
 }
 
 .plan__icons__exp {
-  width: 120px !important;
+  max-width: 400px;
 }
 
 .plan__icons__exp__div {
+  width: 100%;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -76,7 +77,6 @@ h1 {
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   border-right: 1px solid rgba(0, 0, 0, 0.459);
   p {
-    font-weight: 400;
     margin: 16px;
   }
 }

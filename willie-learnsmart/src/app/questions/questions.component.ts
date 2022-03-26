@@ -18,10 +18,7 @@ export class QuestionsComponent implements OnInit {
     this.plan = new Plan();
   }
 
-  createPlanBtn() {
-    console.table(this.answers);
-    console.table(this.plan);
-  }
+  createPlanBtn() {}
 
   addName(userName: string) {
     if (userName) {

@@ -1,5 +1,5 @@
 export class Answers {
-  public userName: string = '';
+  public userName: any = '';
   public userAge: number = 0;
   public userTopic: string = '';
   public userGoal: string = '';
