@@ -15,33 +15,10 @@ export class QuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.answers = new Answers();
-    this.plan = new Plan();
   }
 
-  createPlanBtn() {}
-
-  addName(userName: string) {
-    if (userName) {
-      this.answers.userName = userName;
-    }
-  }
-
-  addAge(userAge: number) {
-    if (userAge) {
-      this.answers.userAge = userAge;
-    }
-  }
-
-  addTopic(userTopic: string) {
-    if (userTopic) {
-      this.answers.userTopic = userTopic;
-    }
-  }
-
-  addGoal(userGoal: string) {
-    if (userGoal) {
-      this.answers.userGoal = userGoal;
-    }
+  createPlanBtn() {
+    console.log(this.answers);
   }
 
   pushNotPossibleDays(days: string) {

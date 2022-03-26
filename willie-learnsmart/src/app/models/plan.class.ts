@@ -1,8 +1,8 @@
 export class Plan {
-  monday: string[] = ['50MinEnglisch', '25MinEnglisch'];
+  monday: string[] = [];
   tuesday: string[] = [];
   wednesday: string[] = [];
-  thursday: string[] = ['25MinEnglisch'];
+  thursday: string[] = [];
   friday: string[] = [];
   saturday: string[] = [];
   sunday: string[] = [];

@@ -7,10 +7,17 @@ import { QuestionsComponent } from './questions/questions.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { PlanComponent } from './plan/plan.component';
 import { MainComponent } from './main/main.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, QuestionsComponent, FrontpageComponent, PlanComponent, MainComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    QuestionsComponent,
+    FrontpageComponent,
+    PlanComponent,
+    MainComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

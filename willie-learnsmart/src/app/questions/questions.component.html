@@ -13,19 +13,14 @@
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What's your name?</p>
-  <input
-    #userName
-    (keyup)="addName(userName.value)"
-    maxlength="14"
-    type="text"
-  />
+  <input #userName [(ngModel)]="answers.userName" maxlength="14" type="text" />
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">How old are you?</p>
   <input
     #userAge
-    (keyup)="addAge(+userAge.value)"
+    [(ngModel)]="answers.userAge"
     min="6"
     maxlength="3"
     type="number"
@@ -36,7 +31,7 @@
   <p class="questions__singleQuestion">What do you want to learn?</p>
   <input
     #userTopic
-    (keyup)="addTopic(userTopic.value)"
+    [(ngModel)]="answers.userTopic"
     maxlength="14"
     type="text"
   />
@@ -46,7 +41,7 @@
   <p class="questions__singleQuestion">What's your goal? Describe!</p>
   <input
     #userGoal
-    (keyup)="addGoal(userGoal.value)"
+    [(ngModel)]="answers.userGoal"
     id="userGoal"
     maxlength="20"
     type="text"
