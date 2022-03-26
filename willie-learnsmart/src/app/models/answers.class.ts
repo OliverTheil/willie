@@ -4,7 +4,7 @@ export class Answers {
   public userTopic: string = '';
   public userGoal: string = '';
 
-  public workPerDay: number = 0;
+  public workPerWeek: number = 0;
   public lifePerDay: number = 2;
   public level: number = 1;
 
@@ -21,7 +21,4 @@ export class Answers {
 
   public month: boolean = true;
   public planned: boolean = true;
-
-  public hoursPerDay: number = 24;
-  public hoursPerWeek: number = 168;
 }

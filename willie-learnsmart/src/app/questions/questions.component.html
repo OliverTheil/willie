@@ -48,58 +48,36 @@
   />
 </section>
 
-<section>
-  <p class="questions__singleQuestion">
-    How much time do you need for your work and yourself / life?
-  </p>
+<section class="questions__input margin--b--4rem borderRadius--16">
+  <p class="questions__singleQuestion">How many hours a week do you work?</p>
+  <input [(ngModel)]="answers.workPerWeek" maxlength="3" type="number" />
 </section>
 
-<section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button (click)="answers.workPerDay = 0"></button>
-    <p>Work: I don't work at the moment</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.workPerDay = 4"></button>
-    <p>Work: 4 hours a day</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.workPerDay = 6"></button>
-    <p>Work: 6 hours a day</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.workPerDay = 8"></button>
-    <p>Work: 8 hours a day</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.workPerDay = 10"></button>
-    <p>Work: 10 hours a day</p>
-  </div>
+<section>
+  <p class="questions__singleQuestion">
+    How much time do you need for yourself / life?
+  </p>
 </section>
 
 <section class="scrollable margin--b--4rem borderRadius--16">
   <div class="questions__checkBox">
     <button (click)="answers.lifePerDay = 2"></button>
-    <p>Your life: 2 hours</p>
+    <p>2 hours a day</p>
   </div>
 
   <div class="questions__checkBox">
     <button (click)="answers.lifePerDay = 4"></button>
-    <p>Your life: 4 hours</p>
+    <p>4 hours day</p>
   </div>
 
   <div class="questions__checkBox">
     <button (click)="answers.lifePerDay = 6"></button>
-    <p>Your life: 6 hours</p>
+    <p>6 hours a day</p>
   </div>
 
   <div class="questions__checkBox">
     <button (click)="answers.lifePerDay = 8"></button>
-    <p>Your life: 8 hours</p>
+    <p>8 hours a day</p>
   </div>
 </section>
 

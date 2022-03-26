@@ -8,8 +8,8 @@ import { Plan } from '../models/plan.class';
   styleUrls: ['./questions.component.scss'],
 })
 export class QuestionsComponent implements OnInit {
-  answers: Answers;
-  plan: Plan;
+  public answers: Answers;
+  public plan: Plan;
 
   constructor() {}
 
@@ -18,7 +18,8 @@ export class QuestionsComponent implements OnInit {
   }
 
   createPlanBtn() {
-    console.log(this.answers);
+    let answers = this.answers;
+    localStorage.setItem('answers', JSON.stringify(answers));
   }
 
   pushNotPossibleDays(days: string) {
