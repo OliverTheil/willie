@@ -1,9 +1,9 @@
 export class Plan {
-  monday: string[] = [];
-  tuesday: string[] = [];
-  wednesday: string[] = [];
-  thursday: string[] = [];
-  friday: string[] = [];
-  saturday: string[] = [];
-  sunday: string[] = [];
+  monday: string[] = ['TEST'];
+  tuesday: string[] = ['TEST'];
+  wednesday: string[] = ['TEST'];
+  thursday: string[] = ['TEST'];
+  friday: string[] = ['TEST'];
+  saturday: string[] = ['TEST'];
+  sunday: string[] = ['TEST'];
 }

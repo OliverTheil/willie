@@ -99,6 +99,13 @@ h1 {
   background-color: rgba(226, 88, 34, 0.781);
 }
 
+.icon__optional {
+  background-color: rgba(255, 255, 255, 0.705);
+  i {
+    color: limegreen;
+  }
+}
+
 .fa-solid {
   color: rgba(255, 255, 255, 0.411);
 }
