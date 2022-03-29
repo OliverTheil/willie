@@ -15,6 +15,8 @@ export class QuestionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.answers = new Answers();
+    let retrievedAnswers = localStorage.getItem('answers');
+    this.answers = JSON.parse(retrievedAnswers);
   }
 
   createPlanBtn() {
