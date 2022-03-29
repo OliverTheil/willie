@@ -17,7 +17,7 @@ body {
   height: 100%;
   margin: 0;
   background: linear-gradient(#8bdd08, #6cc407, #20a006, #045516);
-  background-size: 600% 600%;
+  background-size: 1000% 1000%;
   @media (max-width: 650px) {
     background-size: 1000% 1000%;
   }
@@ -96,13 +96,19 @@ textarea:focus {
   outline: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .margin--b--4rem {
   margin-bottom: 4rem;
 }
 
 .margin--tb--4rem {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-top: 4rem !important;
+  margin-bottom: 4rem !important;
 }
 
 .borderRadius--16 {

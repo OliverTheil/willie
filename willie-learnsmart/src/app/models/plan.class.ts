@@ -1,9 +1,21 @@
 export class Plan {
-  monday: string[] = ['TEST'];
-  tuesday: string[] = ['TEST'];
-  wednesday: string[] = ['TEST'];
-  thursday: string[] = ['TEST'];
-  friday: string[] = ['TEST'];
-  saturday: string[] = ['TEST'];
-  sunday: string[] = ['TEST'];
+  monday: string[] = ['50min'];
+  tuesday: string[] = ['50min'];
+  wednesday: string[] = [];
+  thursday: string[] = [];
+  friday: string[] = [];
+  saturday: string[] = [];
+  sunday: string[] = [];
+  days: string[] = [
+    'Monday',
+    'Tuesday',
+    'Thursday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
+  ];
+  weeks: string[] = [];
+  strict: boolean = false;
 }

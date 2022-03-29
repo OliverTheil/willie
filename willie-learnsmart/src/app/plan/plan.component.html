@@ -1,12 +1,24 @@
 <div class="plan">
   <section class="margin--tb--4rem borderRadius--16">
     <div>
-      <h1>And here is your plan !</h1>
+      <h1 *ngIf="this.plan.strict">
+        And here is your plan {{ this.answers.userName }} !
+      </h1>
+      <h1 *ngIf="!this.plan.strict">
+        And here is your recommendation {{ this.answers.userName }} !
+      </h1>
     </div>
     <div>
-      First of all: <br />
-      The complete plan works with the Pomodoro technique. But willie, what is
-      pomodoro?
+      <div *ngIf="this.plan.strict">
+        First of all: <br />
+        The complete plan works with the Pomodoro technique. But willie, what is
+        pomodoro?
+      </div>
+      <div *ngIf="!this.plan.strict">
+        You only got a recommendation but you should still know the following.
+        <br />
+        The best way to learn things goes with the pomodoro technique.
+      </div>
       <br />
       It's a time management from Francesco Cirillo (1980) and stands for
       tomatoe. That's right! It's a tomatoe technique. Ok, no it isn't. It gets
@@ -26,6 +38,7 @@
       - get snacks like some apple pieces or cookies <br />
       - optional: listen to something relaxing like lofi-beats <br />
     </div>
+
     <div class="plan__icons__exp__div">
       Explanation of the symbols:
       <div class="plan__day">
@@ -83,17 +96,49 @@
       </div>
     </div>
   </section>
-  <section class="plan__complete effect">
+
+  <section class="plan__complete margin--tb--4rem effect">
     <div class="plan__day">
-      <p>Monday</p>
+      <div>{{ this.userLearningAbility }}</div>
+      <p class="plan__icons__exp">
+        Your entered data in numbers. From a maximum factor of 1.5 you reached
+        {{ this.userLearningAbility }}. The higher the number, the easier it is
+        for you to learn the given task.
+      </p>
+    </div>
+    <div class="plan__day icon__hand">
+      <i class="fa-solid fa-hand"></i>
+      <p class="plan__icons__exp">
+        If you don't like your plan, customize it! Grab a session and put
+        anywhere or delete it.
+      </p>
+    </div>
+  </section>
+
+  <section
+    *ngFor="let week of this.plan.weeks; let i = index"
+    class="plan__complete effect"
+  >
+    <div>{{ this.plan.weeks[i] }}</div>
+    <div *ngFor="let day of this.plan.days; let d = index" class="plan__day">
+      <p>{{ this.plan.days[d] }}</p>
       <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
+        <div
+          *ngIf="this.plan.monday.includes('50min')"
+          draggable="true"
+          class="plan__singleSession min50 effect"
+        >
           50min
         </div>
-        <div draggable="true" class="plan__singleSession icon__div icon__eat">
+        <div
+          *ngFor="let day of plan.monday['eat']"
+          draggable="true"
+          class="plan__singleSession icon__div icon__eat"
+        >
           <i class="fa-solid fa-apple-whole"></i>
         </div>
         <div
+          *ngFor="let monday of plan.monday['optional']"
           draggable="true"
           class="plan__singleSession icon__div icon__repeat"
         >
@@ -104,7 +149,7 @@
         </div>
       </div>
     </div>
-    <div class="plan__day">
+    <!-- <div class="plan__day">
       <p>Tuesday</p>
       <div class="plan__allSessions">
         <div draggable="true" class="plan__singleSession min50 effect">
@@ -196,8 +241,9 @@
           25min
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
+
   <section class="backButton effect">
     <p routerLink="" class="backLink">
       You don't like your plan? Make a new one!

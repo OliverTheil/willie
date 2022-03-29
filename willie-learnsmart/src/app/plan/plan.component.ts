@@ -18,7 +18,7 @@ export class PlanComponent implements OnInit {
   userAge: number = 0;
 
   /**
-   * * Standardfactor = 1. Stands for the learning ability. Smallest = 0.5, Highest 1.5.
+   * * Standardfactor = 1. Stands for the learning ability. Smallest = 0.5, Highest 1.5. Everything outside this range will be adjusted.
    */
   userLearningAbility = 1;
   levelFactor = 1;
@@ -39,6 +39,7 @@ export class PlanComponent implements OnInit {
     let retrievedAnswers = localStorage.getItem('answers');
     this.answers = JSON.parse(retrievedAnswers);
     this.calculationPlan();
+    console.table(this.answers);
   }
 
   calculationPlan() {
@@ -53,6 +54,7 @@ export class PlanComponent implements OnInit {
     this.checkTopicLevel();
     this.checkUserFeeling();
     this.calculateLearningAbility();
+    this.checkPlan();
   }
 
   calculateMinutes() {
@@ -101,20 +103,16 @@ export class PlanComponent implements OnInit {
   }
 
   calculateLearningAbility() {
-    console.log(
-      'USERLEARNINGABILITY VOR BERECHNUNG:',
-      this.userLearningAbility
-    );
-    this.userLearningAbility =
+    let userLA = this.userLearningAbility;
+    console.log('USERLEARNINGABILITY VOR BERECHNUNG:', userLA);
+    userLA =
       this.levelFactor *
       this.ageFactor *
       this.feelingSpeed *
       this.feelingEndurance *
       this.feelingLove;
-    console.log(
-      'USERLEARNINGABILITY NACH BERECHNUNG:',
-      this.userLearningAbility
-    );
+    console.log('USERLEARNINGABILITY NACH BERECHNUNG:', userLA);
+    this.userLearningAbility = +userLA.toFixed(2);
   }
 
   checkUserAge() {
@@ -240,5 +238,28 @@ export class PlanComponent implements OnInit {
     }
     console.log(this.answers.notPossibleDays);
     console.table(this.plan);
+  }
+
+  checkPlan() {
+    if (this.answers.planned) {
+      this.plan.strict = true;
+    }
+    if (!this.answers.planned) {
+      this.plan.strict = false;
+    }
+    if (!this.answers.month) {
+      this.plan.weeks = ['Your Week'];
+    }
+    if (this.answers.month) {
+      this.plan.weeks = [
+        'First Week',
+        'Second Week',
+        'Third Week',
+        'Last Week',
+      ];
+    }
+    if (!this.plan.strict) {
+      this.plan.weeks = [];
+    }
   }
 }
