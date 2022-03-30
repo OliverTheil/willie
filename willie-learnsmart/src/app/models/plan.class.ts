@@ -19,4 +19,10 @@ export class Plan {
   ];
   weeks: string[] = [];
   strict: boolean = false;
+
+  50: string = '50min';
+  25: string = '25min';
+  eat: string = 'eat';
+  repeat: string = 'string';
+  optional: string = 'optional';
 }

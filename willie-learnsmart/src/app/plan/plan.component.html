@@ -123,7 +123,11 @@
     <div *ngFor="let day of this.plan.days; let d = index" class="plan__day">
       <p #day>{{ this.plan.days[d] }}</p>
       <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
+        <div
+          *ngIf="this.plan[day].includes('50min')"
+          draggable="true"
+          class="plan__singleSession min50 effect"
+        >
           50min
         </div>
         <div
