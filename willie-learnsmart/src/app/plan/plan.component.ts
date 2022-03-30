@@ -46,6 +46,7 @@ export class PlanComponent implements OnInit {
     this.checkGoodDays();
     this.checkNotPossibleDays();
     this.setUserAbility();
+    console.log(this.plan.notPossibleDays);
   }
 
   setUserAbility() {

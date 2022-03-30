@@ -124,35 +124,35 @@
       <p #day>{{ this.plan.days[d] }}</p>
       <div class="plan__allSessions">
         <div
-          *ngIf="this.plan[day].includes('50min')"
+          *ngFor="let min of this.plan[day].min50"
           draggable="true"
           class="plan__singleSession min50 effect"
         >
           50min
         </div>
         <div
-          *ngIf="this.plan[day].includes('eat')"
+          *ngFor="let min of this.plan[day].eat"
           draggable="true"
           class="plan__singleSession icon__div icon__eat"
         >
           <i class="fa-solid fa-apple-whole"></i>
         </div>
         <div
-          *ngIf="this.plan[day].includes('repeat')"
+          *ngFor="let min of this.plan[day].repeat"
           draggable="true"
           class="plan__singleSession icon__div icon__repeat"
         >
           <i class="fa-solid fa-arrow-rotate-right"></i>
         </div>
         <div
-          *ngIf="this.plan[day].includes('25min')"
+          *ngFor="let min of this.plan[day].min25"
           draggable="true"
           class="plan__singleSession min25 effect"
         >
           25min
         </div>
         <div
-          *ngIf="this.plan[day].includes('optional')"
+          *ngFor="let min of this.plan[day].optional"
           draggable="true"
           class="plan__singleSession icon__div icon__optional"
         >

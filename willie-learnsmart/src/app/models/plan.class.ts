@@ -1,11 +1,53 @@
 export class Plan {
-  monday: string[] = [];
-  tuesday: string[] = [];
-  wednesday: string[] = ['50min', '50min'];
-  thursday: string[] = [];
-  friday: string[] = ['50min'];
-  saturday: string[] = [];
-  sunday: string[] = [];
+  monday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
+  tuesday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
+  wednesday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
+  thursday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
+  friday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
+  saturday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
+  sunday = {
+    min50: ['50min', '50min'],
+    min25: ['25min', '25min'],
+    eat: ['eat', 'eat'],
+    repeat: ['repeat', 'repeat'],
+    optional: ['optional', 'optional'],
+  };
   goodDays: string[] = [];
   notPossibleDays: string[] = [];
   days: string[] = [
@@ -19,10 +61,4 @@ export class Plan {
   ];
   weeks: string[] = [];
   strict: boolean = false;
-
-  50: string = '50min';
-  25: string = '25min';
-  eat: string = 'eat';
-  repeat: string = 'string';
-  optional: string = 'optional';
 }
