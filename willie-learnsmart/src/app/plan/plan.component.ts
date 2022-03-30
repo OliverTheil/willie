@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Answers } from '../models/answers.class';
 import { Plan } from '../models/plan.class';
-import { QuestionsComponent } from '../questions/questions.component';
 
 @Component({
   selector: 'app-plan',
