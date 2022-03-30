@@ -39,12 +39,12 @@ export class PlanComponent implements OnInit {
     let retrievedAnswers = localStorage.getItem('answers');
     this.answers = JSON.parse(retrievedAnswers);
     this.calculationPlan();
-    console.table(this.answers);
   }
 
   calculationPlan() {
     this.calculateMinutes();
     this.calculateMinutesPerDay();
+    this.checkGoodDays();
     this.checkNotPossibleDays();
     this.setUserAbility();
   }
@@ -158,106 +158,60 @@ export class PlanComponent implements OnInit {
 
     if (feelingSpeed) {
       this.feelingSpeed = 0.85;
-      console.log('Der Nutzer lernt langsam.');
     }
     if (!feelingSpeed) {
       this.feelingSpeed = 1.1;
-      console.log('Der Nutzer lernt schnell');
     }
     if (!feelingEndurance) {
       this.feelingEndurance = 0.85;
-      console.log('Die Ausdauer des Nutzers ist schlecht.');
     }
     if (feelingEndurance) {
       this.feelingEndurance = 1.1;
-      console.log('Die Ausdauer des Nutzers ist gut.');
     }
     if (!feelingLove) {
       this.feelingLove = 0.85;
-      console.log('Der Nutzer hasst lernen');
     }
     if (feelingLove) {
       this.feelingLove = 1.1;
-      console.log('Der Nutzer liebt lernen');
     }
-    console.log(
-      'FAKTOR FEELING',
-      this.feelingSpeed,
-      this.feelingEndurance,
-      this.feelingLove
-    );
   }
 
   checkGoodDays() {
     let gDay = this.answers.goodDays;
-    if (gDay.includes('monday')) {
-      console.log('testing');
+    for (let i = 0; i < this.plan.days.length; i++) {
+      let day = this.plan.days[i];
+      if (gDay.includes(day)) {
+        this.plan.goodDays.push(day);
+      }
     }
-    if (gDay.includes('tuesday')) {
-      console.log('testing');
-    }
-    if (gDay.includes('wednesday')) {
-      console.log('testing');
-    }
-    if (gDay.includes('thursday')) {
-      console.log('testing');
-    }
-    if (gDay.includes('friday')) {
-      console.log('testing');
-    }
-    if (gDay.includes('saturday')) {
-      console.log('testing');
-    }
-    if (gDay.includes('sunday')) {
-      console.log('testing');
-    }
+    console.log('MÖGLICHE TAGE:', this.plan.goodDays);
   }
 
   checkNotPossibleDays() {
     let nDay = this.answers.notPossibleDays;
-    if (nDay.includes('monday')) {
-      this.plan.monday = ['optional'];
+    for (let i = 0; i < this.plan.days.length; i++) {
+      let day = this.plan.days[i];
+      if (nDay.includes(day)) {
+        this.plan[day] = ['optional'];
+      }
     }
-    if (nDay.includes('tuesday')) {
-      this.plan.tuesday = ['optional'];
-    }
-    if (nDay.includes('wednesday')) {
-      this.plan.wednesday = ['optional'];
-    }
-    if (nDay.includes('thursday')) {
-      this.plan.thursday = ['optional'];
-    }
-    if (nDay.includes('friday')) {
-      this.plan.friday = ['optional'];
-    }
-    if (nDay.includes('saturday')) {
-      this.plan.saturday = ['optional'];
-    }
-    if (nDay.includes('sunday')) {
-      this.plan.sunday = ['optional'];
-    }
-    console.log(this.answers.notPossibleDays);
-    console.table(this.plan);
+    console.log(this.plan);
   }
 
   checkPlan() {
-    if (this.answers.planned) {
-      this.plan.strict = true;
-    }
-    if (!this.answers.planned) {
-      this.plan.strict = false;
-    }
-    if (!this.answers.month) {
-      this.plan.weeks = ['Your Week'];
-    }
-    if (this.answers.month) {
-      this.plan.weeks = [
-        'First Week',
-        'Second Week',
-        'Third Week',
-        'Last Week',
-      ];
-    }
+    this.answers.planned
+      ? (this.plan.strict = true)
+      : (this.plan.strict = false);
+
+    !this.answers.month
+      ? (this.plan.weeks = ['Your Week'])
+      : (this.plan.weeks = [
+          'First Week',
+          'Second Week',
+          'Third Week',
+          'Last Week',
+        ]);
+
     if (!this.plan.strict) {
       this.plan.weeks = [];
     }
