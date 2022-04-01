@@ -120,14 +120,11 @@ export class PlanComponent implements OnInit {
 
     if (age <= 20) {
       this.ageFactor = 1.4;
-    }
-    if (age > 20 && age < 30) {
+    } else if (age > 20 && age < 30) {
       this.ageFactor = 1.2;
-    }
-    if (age >= 30 && age < 40) {
+    } else if (age >= 30 && age < 40) {
       this.ageFactor = 0.9;
-    }
-    if (age >= 40) {
+    } else if (age >= 40) {
       this.ageFactor = 0.8;
     }
     console.log('FAKTOR ALTER:', this.ageFactor);
@@ -138,14 +135,11 @@ export class PlanComponent implements OnInit {
 
     if (lv == 1) {
       this.levelFactor = 1.5;
-    }
-    if (lv == 2) {
+    } else if (lv == 2) {
       this.levelFactor = 1.2;
-    }
-    if (lv == 3) {
+    } else if (lv == 3) {
       this.levelFactor = 0.8;
-    }
-    if (lv == 4) {
+    } else if (lv == 4) {
       this.levelFactor = 0.6;
     }
     console.log('FAKTOR LEVEL', this.levelFactor);
@@ -158,20 +152,15 @@ export class PlanComponent implements OnInit {
 
     if (feelingSpeed) {
       this.feelingSpeed = 0.85;
-    }
-    if (!feelingSpeed) {
+    } else if (!feelingSpeed) {
       this.feelingSpeed = 1.1;
-    }
-    if (!feelingEndurance) {
+    } else if (!feelingEndurance) {
       this.feelingEndurance = 0.85;
-    }
-    if (feelingEndurance) {
+    } else if (feelingEndurance) {
       this.feelingEndurance = 1.1;
-    }
-    if (!feelingLove) {
+    } else if (!feelingLove) {
       this.feelingLove = 0.85;
-    }
-    if (feelingLove) {
+    } else if (feelingLove) {
       this.feelingLove = 1.1;
     }
   }

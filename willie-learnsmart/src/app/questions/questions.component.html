@@ -60,24 +60,18 @@
 </section>
 
 <section class="scrollable margin--b--4rem borderRadius--16">
-  <div class="questions__checkBox">
-    <button disabled (click)="answers.lifePerDay = 120"></button>
-    <p>2 hours a day</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.lifePerDay = 240"></button>
-    <p>4 hours day</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.lifePerDay = 360"></button>
-    <p>6 hours a day</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button (click)="answers.lifePerDay = 480"></button>
-    <p>8 hours a day</p>
+  <div
+    *ngFor="let min of answers.lifePerDaySteps; let i = index"
+    class="questions__checkBox"
+  >
+    <button
+      [class.disabled]="answers.lifePerDay != min"
+      [class.enabled]="answers.lifePerDay == min"
+      (click)="answers.lifePerDay = min"
+    ></button>
+    <p>
+      <b> {{ min / 60 }}</b> hours a day.
+    </p>
   </div>
 </section>
 
@@ -88,21 +82,27 @@
 </section>
 
 <section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button (click)="answers.level = 1"></button>
-    <p>LV 1: Easy practice, easy to understand.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.level = 2"></button>
-    <p>LV 2: More practice, easy to understand.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.level = 3"></button>
-    <p>LV 3: More practice, hard to understand.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.level = 4"></button>
-    <p>LV 4: Very much practice, very hard to understand.</p>
+  <div
+    *ngFor="let lv of answers.lvSteps; let i = index"
+    class="questions__checkBox"
+  >
+    <button
+      [class.disabled]="answers.level != lv"
+      [class.enabled]="answers.level == lv"
+      (click)="answers.level = lv"
+    ></button>
+    <p *ngIf="lv == 1">
+      <b>LV {{ lv }}</b> : Easy practice, easy to understand.
+    </p>
+    <p *ngIf="lv == 2">
+      <b>LV {{ lv }}</b> : More practice, easy to understand.
+    </p>
+    <p *ngIf="lv == 3">
+      <b>LV {{ lv }}</b> : More practice, hard to understand.
+    </p>
+    <p *ngIf="lv == 4">
+      <b>LV {{ lv }}</b> : Very much practice, very hard to understand.
+    </p>
   </div>
 </section>
 
@@ -112,29 +112,53 @@
 
 <section class="scrollable margin--b--4rem">
   <div class="questions__checkBox">
-    <button (click)="answers.learningSlow = true"></button>
+    <button
+      [class.disabled]="!answers.learningSlow"
+      [class.enabled]="answers.learningSlow"
+      (click)="answers.learningSlow = true"
+    ></button>
     <p>I'm slow at learning things.</p>
   </div>
   <div class="questions__checkBox">
-    <button (click)="answers.learningSlow = false"></button>
+    <button
+      [class.disabled]="answers.learningSlow"
+      [class.enabled]="!answers.learningSlow"
+      (click)="answers.learningSlow = false"
+    ></button>
     <p>I'm fast.</p>
   </div>
   <div class="questions__checkBox">
-    <button (click)="answers.learningEnduranceGood = false"></button>
+    <button
+      [class.disabled]="answers.learningEnduranceGood"
+      [class.enabled]="!answers.learningEnduranceGood"
+      (click)="answers.learningEnduranceGood = false"
+    ></button>
     <p>My endurance is rather bad.</p>
   </div>
   <div class="questions__checkBox">
-    <button (click)="answers.learningEnduranceGood = true"></button>
+    <button
+      [class.disabled]="!answers.learningEnduranceGood"
+      [class.enabled]="answers.learningEnduranceGood"
+      (click)="answers.learningEnduranceGood = true"
+    ></button>
     <p>I got a big endurance.</p>
   </div>
 
   <div class="questions__checkBox">
-    <button (click)="answers.learningLove = false"></button>
+    <button
+      [class.disabled]="answers.learningLove"
+      [class.enabled]="!answers.learningLove"
+      (click)="answers.learningLove = false"
+    ></button>
     <p>I hate learning.</p>
   </div>
 
   <div class="questions__checkBox">
-    <button (click)="answers.learningLove = true"></button>
+    <button
+      [class.disabled]="!answers.learningLove"
+      [class.enabled]="answers.learningLove"
+      (click)="answers.learningLove = true"
+    ></button>
     <p>I love learning.</p>
   </div>
 </section>
@@ -144,33 +168,15 @@
 </section>
 
 <section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button (click)="answers.minutesPerDay = 30"></button>
-    <p>Every day max 30 min.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.minutesPerDay = 30"></button>
-    <p>Every day max 60 min.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.minutesPerDay = 90"></button>
-    <p>Every day max 90 min.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.minutesPerDay = 120"></button>
-    <p>Every day max 120 min.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.minutesPerDay = 150"></button>
-    <p>Every day max 150 min.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.minutesPerDay = 180"></button>
-    <p>Every day max 180 min.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.moreAtWeekends = true"></button>
-    <p>Even more at Weekends.</p>
+  <div *ngFor="let min of answers.minPerDaySteps" class="questions__checkBox">
+    <button
+      [class.enabled]="answers.minutesPerDay == min"
+      [class.disabled]="answers.minutesPerDay != min"
+      (click)="answers.minutesPerDay = min"
+    ></button>
+    <p>
+      Every day max <b>{{ min / 60 }}</b> hours.
+    </p>
   </div>
 </section>
 
@@ -179,37 +185,18 @@
 </section>
 
 <section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 120"></button>
-    <p>2 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 240"></button>
-    <p>4 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 360"></button>
-    <p>6 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 480"></button>
-    <p>8 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 600"></button>
-    <p>10 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 720"></button>
-    <p>12 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 840"></button>
-    <p>14 hours.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="answers.maxMinutesPerWeek = 960"></button>
-    <p>16 hours.</p>
+  <div
+    *ngFor="let min of answers.maxTimePerWeekSteps"
+    class="questions__checkBox"
+  >
+    <button
+      [class.enabled]="answers.maxMinutesPerWeek == min"
+      [class.disabled]="answers.maxMinutesPerWeek != min"
+      (click)="answers.maxMinutesPerWeek = min"
+    ></button>
+    <p>
+      <b>{{ min / 60 }}</b> hours.
+    </p>
   </div>
 </section>
 
@@ -220,33 +207,13 @@
 </section>
 
 <section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('monday')"></button>
-    <p>Monday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('tuesday')"></button>
-    <p>Tuesday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('wednesday')"></button>
-    <p>Wednesday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('thursday')"></button>
-    <p>Thursday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('friday')"></button>
-    <p>Friday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('saturday')"></button>
-    <p>Saturday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushNotPossibleDays('sunday')"></button>
-    <p>Sunday</p>
+  <div *ngFor="let button of this.answers.days" class="questions__checkBox">
+    <button
+      [class.enabled]="answers.notPossibleDays.includes(button)"
+      [class.disabled]="!answers.notPossibleDays.includes(button)"
+      (click)="pushNotPossibleDays(button)"
+    ></button>
+    <p>{{ button }}</p>
   </div>
 </section>
 
@@ -255,33 +222,13 @@
 </section>
 
 <section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('monday')"></button>
-    <p>Monday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('tuesday')"></button>
-    <p>Tuesday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('wednesday')"></button>
-    <p>Wednesday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('thursday')"></button>
-    <p>Thursday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('friday')"></button>
-    <p>Friday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('saturday')"></button>
-    <p>Saturday</p>
-  </div>
-  <div class="questions__checkBox">
-    <button (click)="pushGoodDays('sunday')"></button>
-    <p>Sunday</p>
+  <div *ngFor="let button of this.answers.days" class="questions__checkBox">
+    <button
+      [class.enabled]="answers.goodDays.includes(button)"
+      [class.disabled]="!answers.goodDays.includes(button)"
+      (click)="pushGoodDays(button)"
+    ></button>
+    <p>{{ button }}</p>
   </div>
 </section>
 
@@ -291,12 +238,20 @@
 
 <section class="scrollable margin--b--4rem">
   <div class="questions__checkBox">
-    <button (click)="answers.month = false"></button>
-    <p>Week</p>
+    <button
+      [class.enabled]="answers.month"
+      [class.disabled]="!answers.month"
+      (click)="answers.month = true"
+    ></button>
+    <p>Month</p>
   </div>
   <div class="questions__checkBox">
-    <button (click)="answers.month = true"></button>
-    <p>Month</p>
+    <button
+      [class.enabled]="!answers.month"
+      [class.disabled]="answers.month"
+      (click)="answers.month = false"
+    ></button>
+    <p>Week</p>
   </div>
 </section>
 
@@ -309,11 +264,19 @@
 
 <section class="scrollable margin--b--4rem">
   <div class="questions__checkBox">
-    <button (click)="answers.planned = true"></button>
+    <button
+      [class.enabled]="answers.planned"
+      [class.disabled]="!answers.planned"
+      (click)="answers.planned = true"
+    ></button>
     <p>An exact Plan - Every day is planned.</p>
   </div>
   <div class="questions__checkBox">
-    <button (click)="answers.planned = false"></button>
+    <button
+      [class.enabled]="!answers.planned"
+      [class.disabled]="answers.planned"
+      (click)="answers.planned = false"
+    ></button>
     <p>Just a recommendation.</p>
   </div>
 </section>

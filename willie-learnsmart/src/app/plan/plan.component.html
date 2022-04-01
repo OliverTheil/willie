@@ -99,18 +99,20 @@
 
   <section class="plan__complete margin--tb--4rem effect">
     <div class="plan__day">
-      <div>{{ this.userLearningAbility }}</div>
+      <div>
+        <b>{{ this.userLearningAbility }}</b>
+      </div>
       <p class="plan__icons__exp">
-        Your entered data in numbers. From a maximum factor of 1.5 you reached
-        {{ this.userLearningAbility }}. The higher the number, the easier it is
-        for you to learn the given task.
+        Your entered data in numbers. From a maximum factor of <b>1.5</b> you
+        reached <b>{{ this.userLearningAbility }}</b
+        >. The higher the number, the easier it is for you to learn the given
+        task.
       </p>
     </div>
     <div class="plan__day icon__hand">
       <i class="fa-solid fa-hand"></i>
       <p class="plan__icons__exp">
-        If you don't like your plan, customize it! Grab a session and put
-        anywhere or delete it.
+        If you don't like your plan, customize it! Grab or delete a session.
       </p>
     </div>
   </section>

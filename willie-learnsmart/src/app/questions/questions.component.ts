@@ -8,15 +8,20 @@ import { Plan } from '../models/plan.class';
   styleUrls: ['./questions.component.scss'],
 })
 export class QuestionsComponent implements OnInit {
-  public answers: Answers;
-  public plan: Plan;
+  answers: Answers;
+  plan: Plan;
 
   constructor() {}
 
   ngOnInit(): void {
     this.answers = new Answers();
-    let retrievedAnswers = localStorage.getItem('answers');
-    this.answers = JSON.parse(retrievedAnswers);
+    if (localStorage.getItem('answers') === null) {
+      let emptyTemplate = this.answers;
+      localStorage.setItem('answers', JSON.stringify(emptyTemplate));
+    } else {
+      let retrievedAnswers = localStorage.getItem('answers');
+      this.answers = JSON.parse(retrievedAnswers);
+    }
   }
 
   createPlanBtn() {
@@ -28,6 +33,8 @@ export class QuestionsComponent implements OnInit {
     let noDay = this.answers.notPossibleDays;
     if (days && !noDay.includes(days)) {
       noDay.push(days);
+    } else {
+      noDay.splice(noDay.indexOf(days), 1);
     }
   }
 
@@ -35,6 +42,8 @@ export class QuestionsComponent implements OnInit {
     let goodDays = this.answers.goodDays;
     if (days && !goodDays.includes(days)) {
       goodDays.push(days);
+    } else {
+      goodDays.splice(goodDays.indexOf(days), 1);
     }
   }
 }

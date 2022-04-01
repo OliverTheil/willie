@@ -27,16 +27,16 @@
   }
 }
 
-:enabled {
+.enabled {
   cursor: pointer;
   transform: scale(1.1);
   background: rgb(134, 202, 8);
 }
 
-:disabled {
-  background-color: transparent;
+.disabled {
+  background-color: white;
   border-color: transparent;
-  cursor: auto;
+  cursor: pointer;
 }
 
 .scrollable {
