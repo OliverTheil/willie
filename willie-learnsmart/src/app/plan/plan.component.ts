@@ -30,6 +30,13 @@ export class PlanComponent implements OnInit {
   maxUserDays: number = 7;
   maxUserMinutesPerDay: number = 0;
 
+  minPW: number; //*minutesPerWeek;
+  maxMinPW: number; //*maxMinutesPerWeek;
+  maxUMin: number; //*maxUserMinutes;
+  maxUD: number; //*maxUserDays;
+  maxUMinPD: number; //*maxUserMinutesPerDay;
+  minPD: number; //*answers.minutesPerDay;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -37,6 +44,7 @@ export class PlanComponent implements OnInit {
     this.plan = new Plan();
     let retrievedAnswers = localStorage.getItem('answers');
     this.answers = JSON.parse(retrievedAnswers);
+    this.getValues();
     this.calculationPlan();
   }
 
@@ -46,7 +54,6 @@ export class PlanComponent implements OnInit {
     this.checkGoodDays();
     this.checkNotPossibleDays();
     this.setUserAbility();
-    console.log(this.plan.notPossibleDays);
   }
 
   setUserAbility() {
@@ -57,67 +64,61 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
-  calculateMinutes() {
-    let minPW = this.minutesPerWeek;
-    let maxMinPW = this.answers.maxMinutesPerWeek;
-    let maxUMin = this.maxUserMinutes;
+  getValues() {
+    this.minPW = this.minutesPerWeek;
+    this.maxMinPW = this.answers.maxMinutesPerWeek;
+    this.maxUMin = this.maxUserMinutes;
+    this.maxUD = this.maxUserDays;
+    this.maxUMinPD = this.maxUserMinutesPerDay;
+    this.minPD = this.answers.minutesPerDay;
+    console.log('Minutes per Week:', this.minPW);
+    console.log('Max. Minutes per Week:', this.maxMinPW);
+    console.log('Max. User Min:', this.maxUMin);
+    console.log('Max. User Days:', this.maxUD);
+    console.log('Max. User Min. per Day:', this.maxUMinPD);
+    console.log('Min. per Day:', this.minPD);
+    console.log(this.answers);
+    console.log(this.plan);
+    console.log(this.userLearningAbility);
+  }
 
+  calculateMinutes() {
     let minutesMinusLife =
-      minPW - this.answers.lifePerDay * 7 - this.minutesEssential;
-    let minMinusW = minutesMinusLife - this.answers.workPerWeek - 300;
-    if (minMinusW >= maxMinPW) {
-      maxUMin = maxMinPW;
+      this.minPW - this.answers.lifePerDay * 7 - this.minutesEssential;
+    let minMinusW = minutesMinusLife - this.answers.workPerWeek * 60 - 300;
+    if (minMinusW >= this.maxMinPW) {
+      this.maxUMin = this.maxMinPW;
     }
-    if (minMinusW < maxMinPW && minMinusW > 120) {
-      maxUMin = minMinusW;
+    if (minMinusW < this.maxMinPW && minMinusW > 120) {
+      this.maxUMin = minMinusW;
     }
-    if (maxUMin <= 120) {
-      maxUMin = 120;
+    if (this.maxUMin <= 120) {
+      this.maxUMin = 120;
     }
-    this.maxUserMinutes = maxUMin;
-    console.log('max Minuten die der User insgesamt Zeit hat', maxUMin);
+    this.maxUserMinutes = this.maxUMin;
   }
 
   calculateMinutesPerDay() {
-    let maxUD = this.maxUserDays;
-    let maxUMinPD = this.maxUserMinutesPerDay;
-    let minPD = this.answers.minutesPerDay;
-
-    maxUD = this.maxDays - this.answers.notPossibleDays.length;
-    console.log('max Tage an denen der User Zeit hat:', maxUD);
-    if (maxUD <= 0) {
-      alert('Hey! There is no day where you have time! Please change that.');
-    }
-    console.log('MAX USER MINUTES:', this.maxUserMinutes);
-    maxUMinPD = this.maxUserMinutes / maxUD;
-    console.log('Max. min pro Tag:', maxUMinPD);
-    if (minPD <= maxUMinPD) {
-      maxUMinPD = minPD;
-      console.log(
-        'User hat max min ausgewählt:',
-        minPD,
-        'Min p. Tag, nach dem Vergleich:',
-        maxUMinPD
-      );
+    this.maxUD = this.maxDays - this.answers.notPossibleDays.length;
+    this.maxUMinPD = this.maxUserMinutes / this.maxUD;
+    if (this.minPD <= this.maxUMinPD) {
+      this.maxUMinPD = this.minPD;
     }
   }
 
   calculateLearningAbility() {
     let userLA = this.userLearningAbility;
-    console.log('USERLEARNINGABILITY VOR BERECHNUNG:', userLA);
     userLA =
       this.levelFactor *
       this.ageFactor *
       this.feelingSpeed *
       this.feelingEndurance *
       this.feelingLove;
-    console.log('USERLEARNINGABILITY NACH BERECHNUNG:', userLA);
     this.userLearningAbility = +userLA.toFixed(2);
   }
 
   checkUserAge() {
     let age = this.answers.userAge;
-
     if (age <= 20) {
       this.ageFactor = 1.4;
     } else if (age > 20 && age < 30) {
@@ -127,7 +128,6 @@ export class PlanComponent implements OnInit {
     } else if (age >= 40) {
       this.ageFactor = 0.8;
     }
-    console.log('FAKTOR ALTER:', this.ageFactor);
   }
 
   checkTopicLevel() {
@@ -142,7 +142,6 @@ export class PlanComponent implements OnInit {
     } else if (lv == 4) {
       this.levelFactor = 0.6;
     }
-    console.log('FAKTOR LEVEL', this.levelFactor);
   }
 
   checkUserFeeling() {
@@ -173,7 +172,6 @@ export class PlanComponent implements OnInit {
         this.plan.goodDays.push(day);
       }
     }
-    console.log('MÖGLICHE TAGE:', this.plan.goodDays);
   }
 
   checkNotPossibleDays() {
@@ -181,10 +179,9 @@ export class PlanComponent implements OnInit {
     for (let i = 0; i < this.plan.days.length; i++) {
       let day = this.plan.days[i];
       if (nDay.includes(day)) {
-        this.plan[day] = ['optional'];
+        this.plan[day].optional = ['optional'];
       }
     }
-    console.log(this.plan);
   }
 
   checkPlan() {

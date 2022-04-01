@@ -13,13 +13,18 @@
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What's your name?</p>
-  <input #userName [(ngModel)]="answers.userName" maxlength="14" type="text" />
+  <input
+    placeholder="name"
+    [(ngModel)]="answers.userName"
+    maxlength="14"
+    type="text"
+  />
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">How old are you?</p>
   <input
-    #userAge
+    placeholder="age"
     [(ngModel)]="answers.userAge"
     min="6"
     maxlength="3"
@@ -30,7 +35,7 @@
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What do you want to learn?</p>
   <input
-    #userTopic
+    placeholder="topic"
     [(ngModel)]="answers.userTopic"
     maxlength="14"
     type="text"
@@ -40,7 +45,7 @@
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">What's your goal? Describe!</p>
   <input
-    #userGoal
+    placeholder="goal"
     [(ngModel)]="answers.userGoal"
     id="userGoal"
     maxlength="20"
@@ -50,7 +55,12 @@
 
 <section class="questions__input margin--b--4rem borderRadius--16">
   <p class="questions__singleQuestion">How many hours a week do you work?</p>
-  <input [(ngModel)]="answers.workPerWeek" maxlength="3" type="number" />
+  <input
+    [(ngModel)]="answers.workPerWeek"
+    placeholder="hours"
+    maxlength="3"
+    type="number"
+  />
 </section>
 
 <section>
@@ -59,7 +69,7 @@
   </p>
 </section>
 
-<section class="scrollable margin--b--4rem borderRadius--16">
+<section class="scrollable margin--b--4rem">
   <div
     *ngFor="let min of answers.lifePerDaySteps; let i = index"
     class="questions__checkBox"
