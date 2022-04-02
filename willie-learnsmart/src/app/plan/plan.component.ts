@@ -12,12 +12,12 @@ export class PlanComponent implements OnInit {
   plan: Plan;
 
   maxDays: number = 7;
-  minutesPerWeek: number = 10080;
-  minutesEssential: number = 3360;
+  minutesPerWeek: number = 5880; //10080 - 4200  --> 7 * 24 * 60(max min per week) - 7 * 10 * 60(10 hours rest every day)
   userAge: number = 0;
 
   /**
-   * * Standardfactor = 1. Stands for the learning ability. Smallest = 0.5, Highest 1.5. Everything outside this range will be adjusted.
+   * * Standardfactor = 1. Stands for the learning ability. Smallest = 0.5, Highest 1.5.
+   * * After the calculation, 0.5 is subtracted to simplify the factor for the user.
    */
   userLearningAbility = 1;
   levelFactor = 1;
@@ -31,10 +31,10 @@ export class PlanComponent implements OnInit {
   maxUserMinutesPerDay: number = 0;
 
   minPW: number; //*minutesPerWeek;
-  maxMinPW: number; //*maxMinutesPerWeek;
+  maxMinPWeek: number; //*maxMinutesPerWeek;
   maxUMin: number; //*maxUserMinutes;
-  maxUD: number; //*maxUserDays;
-  maxUMinPD: number; //*maxUserMinutesPerDay;
+  maxUDays: number; //*maxUserDays;
+  maxUMinPDay: number; //*maxUserMinutesPerDay;
   minPD: number; //*answers.minutesPerDay;
 
   constructor() {}
@@ -64,32 +64,29 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
+  organizePlan() {}
+
   getValues() {
     this.minPW = this.minutesPerWeek;
-    this.maxMinPW = this.answers.maxMinutesPerWeek;
+    this.maxMinPWeek = this.answers.maxMinutesPerWeek;
     this.maxUMin = this.maxUserMinutes;
-    this.maxUD = this.maxUserDays;
-    this.maxUMinPD = this.maxUserMinutesPerDay;
+    this.maxUDays = this.maxUserDays;
+    this.maxUMinPDay = this.maxUserMinutesPerDay;
     this.minPD = this.answers.minutesPerDay;
-    console.log('Minutes per Week:', this.minPW);
-    console.log('Max. Minutes per Week:', this.maxMinPW);
-    console.log('Max. User Min:', this.maxUMin);
-    console.log('Max. User Days:', this.maxUD);
-    console.log('Max. User Min. per Day:', this.maxUMinPD);
-    console.log('Min. per Day:', this.minPD);
-    console.log(this.answers);
-    console.log(this.plan);
-    console.log(this.userLearningAbility);
   }
 
+  /**
+   * * Calculates the minutes per week
+   */
+
   calculateMinutes() {
-    let minutesMinusLife =
-      this.minPW - this.answers.lifePerDay * 7 - this.minutesEssential;
-    let minMinusW = minutesMinusLife - this.answers.workPerWeek * 60 - 300;
-    if (minMinusW >= this.maxMinPW) {
-      this.maxUMin = this.maxMinPW;
+    let workPerWeekMin = this.answers.workPerWeek * 60;
+    let minutesMinusLife = this.minPW - this.answers.lifePerDay * 7;
+    let minMinusW = minutesMinusLife - workPerWeekMin;
+    if (minMinusW >= this.maxMinPWeek) {
+      this.maxUMin = this.maxMinPWeek;
     }
-    if (minMinusW < this.maxMinPW && minMinusW > 120) {
+    if (minMinusW < this.maxMinPWeek && minMinusW > 120) {
       this.maxUMin = minMinusW;
     }
     if (this.maxUMin <= 120) {
@@ -98,71 +95,94 @@ export class PlanComponent implements OnInit {
     this.maxUserMinutes = this.maxUMin;
   }
 
+  /**
+   * * Calculates the max. minutes per Day. The Plan is based on this value.
+   */
+
   calculateMinutesPerDay() {
-    this.maxUD = this.maxDays - this.answers.notPossibleDays.length;
-    this.maxUMinPD = this.maxUserMinutes / this.maxUD;
-    if (this.minPD <= this.maxUMinPD) {
-      this.maxUMinPD = this.minPD;
+    this.maxUDays = this.maxDays - this.answers.notPossibleDays.length;
+    this.maxUMinPDay = this.maxUserMinutes / this.maxUDays;
+    if (this.minPD <= this.maxUMinPDay) {
+      this.maxUMinPDay = this.minPD;
     }
   }
+
+  /**
+   * * The complete factor calculation
+   */
 
   calculateLearningAbility() {
     let userLA = this.userLearningAbility;
     userLA =
       this.levelFactor *
-      this.ageFactor *
-      this.feelingSpeed *
-      this.feelingEndurance *
-      this.feelingLove;
+        this.ageFactor *
+        this.feelingSpeed *
+        this.feelingEndurance *
+        this.feelingLove -
+      0.5;
     this.userLearningAbility = +userLA.toFixed(2);
+    if (this.userLearningAbility <= 0) {
+      this.userLearningAbility = 0;
+    }
+    if (this.userLearningAbility >= 1) {
+      this.userLearningAbility = 1;
+    }
   }
+
+  /**
+   * calc age factor
+   */
 
   checkUserAge() {
     let age = this.answers.userAge;
-    if (age <= 20) {
-      this.ageFactor = 1.4;
-    } else if (age > 20 && age < 30) {
-      this.ageFactor = 1.2;
-    } else if (age >= 30 && age < 40) {
-      this.ageFactor = 0.9;
-    } else if (age >= 40) {
-      this.ageFactor = 0.8;
-    }
+
+    age <= 20
+      ? (this.ageFactor = 1.4)
+      : age > 20 && age < 30
+      ? (this.ageFactor = 1.2)
+      : age >= 30 && age < 40
+      ? (this.ageFactor = 0.9)
+      : age >= 40
+      ? (this.ageFactor = 0.8)
+      : (this.ageFactor = 1);
   }
+
+  /**
+   * calc topic level factor
+   */
 
   checkTopicLevel() {
     let lv = this.answers.level;
-
-    if (lv == 1) {
-      this.levelFactor = 1.5;
-    } else if (lv == 2) {
-      this.levelFactor = 1.2;
-    } else if (lv == 3) {
-      this.levelFactor = 0.8;
-    } else if (lv == 4) {
-      this.levelFactor = 0.6;
-    }
+    lv == 1
+      ? (this.levelFactor = 1.5)
+      : lv == 2
+      ? (this.levelFactor = 1.2)
+      : lv == 3
+      ? (this.levelFactor = 0.8)
+      : lv == 4
+      ? (this.levelFactor = 0.6)
+      : (this.levelFactor = 1);
   }
+
+  /**
+   * calc feeling factor
+   */
 
   checkUserFeeling() {
     let feelingSpeed = this.answers.learningSlow;
     let feelingEndurance = this.answers.learningEnduranceGood;
     let feelingLove = this.answers.learningLove;
 
-    if (feelingSpeed) {
-      this.feelingSpeed = 0.85;
-    } else if (!feelingSpeed) {
-      this.feelingSpeed = 1.1;
-    } else if (!feelingEndurance) {
-      this.feelingEndurance = 0.85;
-    } else if (feelingEndurance) {
-      this.feelingEndurance = 1.1;
-    } else if (!feelingLove) {
-      this.feelingLove = 0.85;
-    } else if (feelingLove) {
-      this.feelingLove = 1.1;
-    }
+    feelingSpeed ? (this.feelingSpeed = 0.85) : (this.feelingSpeed = 1.1);
+    !feelingEndurance
+      ? (this.feelingEndurance = 0.85)
+      : (this.feelingEndurance = 1.1);
+    !feelingLove ? (this.feelingLove = 0.85) : (this.feelingLove = 1.1);
   }
+
+  /**
+   * * checks the days that are good. At good days is a extra 50 min session.
+   */
 
   checkGoodDays() {
     let gDay = this.answers.goodDays;
@@ -174,6 +194,10 @@ export class PlanComponent implements OnInit {
     }
   }
 
+  /**
+   * * Checks the days that are not possible
+   */
+
   checkNotPossibleDays() {
     let nDay = this.answers.notPossibleDays;
     for (let i = 0; i < this.plan.days.length; i++) {
@@ -183,6 +207,10 @@ export class PlanComponent implements OnInit {
       }
     }
   }
+
+  /**
+   * * Changes the setup of the plan
+   */
 
   checkPlan() {
     this.answers.planned
