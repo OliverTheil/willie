@@ -54,6 +54,7 @@ export class PlanComponent implements OnInit {
     this.checkGoodDays();
     this.checkNotPossibleDays();
     this.setUserAbility();
+    this.organizePlan();
   }
 
   setUserAbility() {
@@ -64,7 +65,11 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
-  organizePlan() {}
+  organizePlan() {
+    console.log(this.minPD);
+
+    console.log(this.plan);
+  }
 
   getValues() {
     this.minPW = this.minutesPerWeek;
@@ -123,8 +128,7 @@ export class PlanComponent implements OnInit {
     this.userLearningAbility = +userLA.toFixed(2);
     if (this.userLearningAbility <= 0) {
       this.userLearningAbility = 0;
-    }
-    if (this.userLearningAbility >= 1) {
+    } else if (this.userLearningAbility >= 1) {
       this.userLearningAbility = 1;
     }
   }
@@ -190,6 +194,7 @@ export class PlanComponent implements OnInit {
       let day = this.plan.days[i];
       if (gDay.includes(day)) {
         this.plan.goodDays.push(day);
+        this.plan[day].min50.push('50min');
       }
     }
   }

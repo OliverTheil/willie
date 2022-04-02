@@ -155,6 +155,13 @@
       <p #day>{{ this.plan.days[d] }}</p>
       <div class="plan__allSessions">
         <div
+          *ngFor="let min of this.plan[day].min25"
+          draggable="true"
+          class="plan__singleSession min25 effect"
+        >
+          25min
+        </div>
+        <div
           *ngFor="let min of this.plan[day].min50"
           draggable="true"
           class="plan__singleSession min50 effect"
@@ -174,13 +181,6 @@
           class="plan__singleSession icon__div icon__repeat"
         >
           <i class="fa-solid fa-arrow-rotate-right"></i>
-        </div>
-        <div
-          *ngFor="let min of this.plan[day].min25"
-          draggable="true"
-          class="plan__singleSession min25 effect"
-        >
-          25min
         </div>
         <div
           *ngFor="let min of this.plan[day].optional"
