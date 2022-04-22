@@ -1,53 +1,90 @@
 export class Plan {
-  Monday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
+  week1 = {
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+    Saturday: [],
+    Sunday: [],
   };
-  Tuesday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
+  week2 = {
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+    Saturday: [],
+    Sunday: [],
   };
-  Wednesday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
+  week3 = {
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+    Saturday: [],
+    Sunday: [],
   };
-  Thursday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
+  week4 = {
+    Monday: [],
+    Tuesday: [],
+    Wednesday: [],
+    Thursday: [],
+    Friday: [],
+    Saturday: [],
+    Sunday: [],
   };
-  Friday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
-  };
-  Saturday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
-  };
-  Sunday = {
-    min50: [],
-    min25: [],
-    eat: [],
-    repeat: [],
-    optional: [],
-  };
+
+  // Monday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
+  // Tuesday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
+  // Wednesday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
+  // Thursday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
+  // Friday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
+  // Saturday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
+  // Sunday = {
+  //   min50: [],
+  //   min25: [],
+  //   eat: [],
+  //   repeat: [],
+  //   optional: [],
+  // };
   goodDays: string[] = [];
   notPossibleDays: string[] = [];
   days: string[] = [
@@ -60,5 +97,6 @@ export class Plan {
     'Sunday',
   ];
   weeks: string[] = [];
+  weekNumbers: string[] = ['week1', 'week2', 'week3', 'week4'];
   strict: boolean = false;
 }

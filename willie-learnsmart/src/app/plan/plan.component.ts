@@ -37,6 +37,13 @@ export class PlanComponent implements OnInit {
   maxUMinPDay: number; //*maxUserMinutesPerDay;
   minPD: number; //*answers.minutesPerDay;
 
+  /**
+   * * Depending on the answers, the user gets 25 or 50 min tasks. True means that the particular task is possible.
+   * * Example: If the the userLearningAbility < 0,25, a 50min task is not possible.
+   */
+  min25 = false;
+  min50 = false;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -51,10 +58,11 @@ export class PlanComponent implements OnInit {
   calculationPlan() {
     this.calculateMinutes();
     this.calculateMinutesPerDay();
-    this.checkGoodDays();
-    this.checkNotPossibleDays();
     this.setUserAbility();
     this.organizePlan();
+    this.checkGoodDays();
+    this.checkNotPossibleDays();
+    // this.testAdd();
   }
 
   setUserAbility() {
@@ -66,9 +74,89 @@ export class PlanComponent implements OnInit {
   }
 
   organizePlan() {
-    console.log(this.minPD);
+    if (this.minPD <= 30) {
+      this.organizeTo30();
+    }
+    if (this.minPD > 30 && this.minPD <= 40) {
+      this.organize30To40();
+    }
+    if (this.minPD > 40 && this.minPD <= 60) {
+      this.organize40To60();
+    }
+    if (this.minPD > 60 && this.minPD <= 90) {
+      this.organize60To90();
+    }
+    if (this.minPD > 90 && this.minPD < 120) {
+      this.organize90To120();
+    }
+    if (this.minPD >= 120) {
+      this.organize120();
+    }
+  }
 
-    console.log(this.plan);
+  organizeTo30() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('optional');
+      }
+    }
+  }
+
+  organize30To40() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize40To60() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('optional');
+      }
+    }
+  }
+
+  organize60To90() {}
+
+  organize90To120() {}
+
+  organize120() {}
+
+  /**
+   *
+   * *returns a random number between min and max
+   */
+  getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   getValues() {
@@ -130,6 +218,13 @@ export class PlanComponent implements OnInit {
       this.userLearningAbility = 0;
     } else if (this.userLearningAbility >= 1) {
       this.userLearningAbility = 1;
+    }
+    if (this.userLearningAbility <= 0.25) {
+      this.min50 = false;
+      this.min25 = true;
+    } else if (this.userLearningAbility > 0.25) {
+      this.min50 = true;
+      this.min25 = true;
     }
   }
 
@@ -194,7 +289,9 @@ export class PlanComponent implements OnInit {
       let day = this.plan.days[i];
       if (gDay.includes(day)) {
         this.plan.goodDays.push(day);
-        this.plan[day].min50.push('50min');
+        for (let i = 0; i < 4; i++) {
+          this.plan[this.plan.weekNumbers[i]][day].push('50min');
+        }
       }
     }
   }
@@ -208,7 +305,9 @@ export class PlanComponent implements OnInit {
     for (let i = 0; i < this.plan.days.length; i++) {
       let day = this.plan.days[i];
       if (nDay.includes(day)) {
-        this.plan[day].optional = ['optional'];
+        for (let i = 0; i < 4; i++) {
+          this.plan[this.plan.weekNumbers[i]][day] = ['optional'];
+        }
       }
     }
   }

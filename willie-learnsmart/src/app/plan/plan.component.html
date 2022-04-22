@@ -24,7 +24,8 @@
       tomato. That's right! It's a tomato technique. Ok, no it isn't. It gets
       its name from a timer that breaks down tasks into smaller 25min-pieces.
       After a 25 minute task you get a 5 minute break. Also very common are
-      tasks with a duration of 50 minutes and 10 minute breaks. <br />
+      tasks with a duration of 50 minutes and 10 minute breaks. The time doesn't
+      matter. Study when you have time for it.<br />
       In a nutshell, after every little task of 25 or 50 minutes you get a
       break.
       <br />
@@ -154,40 +155,42 @@
     <div *ngFor="let day of this.plan.days; let d = index" class="plan__day">
       <p #day>{{ this.plan.days[d] }}</p>
       <div class="plan__allSessions">
-        <div
-          *ngFor="let min of this.plan[day].min25"
-          draggable="true"
-          class="plan__singleSession min25 effect"
-        >
-          25min
-        </div>
-        <div
-          *ngFor="let min of this.plan[day].min50"
-          draggable="true"
-          class="plan__singleSession min50 effect"
-        >
-          50min
-        </div>
-        <div
-          *ngFor="let min of this.plan[day].eat"
-          draggable="true"
-          class="plan__singleSession icon__div icon__eat"
-        >
-          <i class="fa-solid fa-apple-whole"></i>
-        </div>
-        <div
-          *ngFor="let min of this.plan[day].repeat"
-          draggable="true"
-          class="plan__singleSession icon__div icon__repeat"
-        >
-          <i class="fa-solid fa-arrow-rotate-right"></i>
-        </div>
-        <div
-          *ngFor="let min of this.plan[day].optional"
-          draggable="true"
-          class="plan__singleSession icon__div icon__optional"
-        >
-          <i class="fa-solid fa-circle-notch"></i>
+        <div *ngFor="let module of this.plan[this.plan.weekNumbers[i]][day]">
+          <div
+            *ngIf="module == '25min'"
+            draggable="true"
+            class="plan__singleSession min25 effect"
+          >
+            25min
+          </div>
+          <div
+            *ngIf="module == '50min'"
+            draggable="true"
+            class="plan__singleSession min50 effect"
+          >
+            50min
+          </div>
+          <div
+            *ngIf="module == 'eat'"
+            draggable="true"
+            class="plan__singleSession icon__div icon__eat"
+          >
+            <i class="fa-solid fa-apple-whole"></i>
+          </div>
+          <div
+            *ngIf="module == 'repeat'"
+            draggable="true"
+            class="plan__singleSession icon__div icon__repeat"
+          >
+            <i class="fa-solid fa-arrow-rotate-right"></i>
+          </div>
+          <div
+            *ngIf="module == 'optional'"
+            draggable="true"
+            class="plan__singleSession icon__div icon__optional"
+          >
+            <i class="fa-solid fa-circle-notch"></i>
+          </div>
         </div>
       </div>
     </div>
