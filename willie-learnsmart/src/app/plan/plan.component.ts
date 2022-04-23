@@ -41,7 +41,7 @@ export class PlanComponent implements OnInit {
    * * Depending on the answers, the user gets 25 or 50 min tasks. True means that the particular task is possible.
    * * Example: If the the userLearningAbility < 0,25, a 50min task is not possible.
    */
-  min25 = false;
+  min25 = true;
   min50 = false;
 
   constructor() {}
@@ -73,6 +73,9 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
+  /**
+   * * executes the different functions
+   */
   organizePlan() {
     if (this.minPD <= 30) {
       this.organizeTo30();
@@ -94,6 +97,9 @@ export class PlanComponent implements OnInit {
     }
   }
 
+  /**
+   * * If the user has between 30 and 60 min per day
+   */
   organizeTo30() {
     for (let i = 0; i < this.plan.days.length; i++) {
       for (let number = 0; number < 4; number++) {
@@ -140,21 +146,7 @@ export class PlanComponent implements OnInit {
       for (let number = 0; number < 4; number++) {
         this.plan[this.plan.weekNumbers[number]][
           this.plan.days[this.getRndInteger(1, 6)]
-        ].push('repeat');
-      }
-    }
-  }
-
-  organize60To90() {
-    if (this.min50 && this.userLearningAbility >= 0.75) {
-      this.organize60To90_075_1();
-    }
-
-    for (let i = 0; i < this.plan.days.length; i++) {
-      for (let number = 0; number < 4; number++) {
-        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
-          '25min'
-        );
+        ].push('25min');
       }
     }
     for (let i = 0; i < 2; i++) {
@@ -163,6 +155,39 @@ export class PlanComponent implements OnInit {
           this.plan.days[this.getRndInteger(1, 6)]
         ].push('repeat');
       }
+    }
+  }
+
+  /**
+   * * If the user has between 60 and 90 min per day
+   */
+  organize60To90() {
+    if (this.min50 && this.userLearningAbility >= 0.75) {
+      this.organize60To90_075_1();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0.5 &&
+      this.userLearningAbility < 0.75
+    ) {
+      this.organize60To90_050_075();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0.25 &&
+      this.userLearningAbility < 0.5
+    ) {
+      this.organize60To90_025_050();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0 &&
+      this.userLearningAbility < 0.25
+    ) {
+      this.organize60To90False();
+    }
+    if (!this.min50) {
+      this.organize60To90False();
     }
   }
 
@@ -183,7 +208,220 @@ export class PlanComponent implements OnInit {
     }
   }
 
-  organize90To120() {}
+  organize60To90_050_075() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '50min'
+        );
+      }
+    }
+    for (let i = 0; i < 1; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 3)]
+        ].push('25min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(4, 6)]
+        ].push('25min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize60To90_025_050() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 2; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < 1; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('50min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize60To90False() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 2; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  /**
+   * * If the user has between 90 and 120 min per day
+   */
+  organize90To120() {
+    if (this.min50 && this.userLearningAbility >= 0.75) {
+      this.organize90To120_075_1();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0.5 &&
+      this.userLearningAbility < 0.75
+    ) {
+      this.organize90To120_050_075();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0.25 &&
+      this.userLearningAbility < 0.5
+    ) {
+      this.organize90To120_025_050();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0 &&
+      this.userLearningAbility < 0.25
+    ) {
+      this.organize90To120False();
+    }
+    if (!this.min50) {
+      this.organize90To120False();
+    }
+  }
+
+  organize90To120_075_1() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '50min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('25min');
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize90To120_050_075() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '50min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('25min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize90To120_025_050() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 3; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('50min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize90To120False() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 3; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  /**
+   * * If the user has minimum 120 min per day
+   */
 
   organize120() {
     if (this.min50 && this.userLearningAbility >= 0.75) {
@@ -317,6 +555,9 @@ export class PlanComponent implements OnInit {
     }
   }
 
+  /**
+   * * adds a 25min module if possible
+   */
   checkModules() {
     for (let i = 0; i < this.plan.days.length; i++) {
       for (let number = 0; number < 4; number++) {
