@@ -237,6 +237,10 @@ input::-webkit-inner-spin-button {
   border-radius: 4px;
 }
 
+.show {
+  display: flex;
+}
+
 .hide {
   display: none;
 }

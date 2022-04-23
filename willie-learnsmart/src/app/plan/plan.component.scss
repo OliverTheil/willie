@@ -165,16 +165,66 @@ h1 {
 }
 
 .customizePlan {
-  width: 96%;
+  margin-top: 20px;
+  cursor: auto;
+  position: relative;
+  z-index: 1;
+  width: 92%;
   height: 100%;
   border-radius: 8px;
   background: rgb(143, 216, 8);
 
   i {
-    color: black;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.742);
   }
+}
+
+.hover {
+  &:hover {
+    background: rgba(255, 255, 255, 0.36);
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    backdrop-filter: blur(5.2px);
+    -webkit-backdrop-filter: blur(5.2px);
+  }
+}
+
+.close {
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 8px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.add {
+  position: absolute;
+  top: 4px;
+  left: 10px;
+}
+
+.delete {
+  position: absolute;
+  top: 4px;
+  left: 60px;
+}
+
+.moduleContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .column {
   flex-direction: column;
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
 }

@@ -74,7 +74,19 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
-  openDay() {}
+  thisDay(clickedDay) {
+    document.getElementById(clickedDay).style.display = 'flex';
+  }
+
+  closeWindow(clickedDay) {
+    document.getElementById(clickedDay).style.display = 'none';
+  }
+
+  addModule(week, day) {}
+
+  deleteModule(week, day) {
+    console.log('test');
+  }
 
   /**
    * * executes the different functions
