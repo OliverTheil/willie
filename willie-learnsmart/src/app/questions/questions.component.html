@@ -212,7 +212,7 @@
 
 <section>
   <p class="questions__singleQuestion">
-    On which days is learning not possible?
+    On which days you can't or don't want to learn?
   </p>
 </section>
 
@@ -291,12 +291,6 @@
   </div>
 </section>
 
-<section class="createButton">
-  <p
-    (click)="createPlanBtn()"
-    routerLink="/plan"
-    class="questions__singleQuestion"
-  >
-    Click here to create your plan!
-  </p>
+<section (click)="createPlanBtn()" routerLink="/plan" class="createButton">
+  <p class="questions__singleQuestion">Click here to create your plan!</p>
 </section>

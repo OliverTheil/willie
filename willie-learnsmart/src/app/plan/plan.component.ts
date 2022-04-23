@@ -62,7 +62,7 @@ export class PlanComponent implements OnInit {
     this.organizePlan();
     this.checkGoodDays();
     this.checkNotPossibleDays();
-    // this.testAdd();
+    this.checkPause();
   }
 
   setUserAbility() {
@@ -140,16 +140,227 @@ export class PlanComponent implements OnInit {
       for (let number = 0; number < 4; number++) {
         this.plan[this.plan.weekNumbers[number]][
           this.plan.days[this.getRndInteger(1, 6)]
-        ].push('optional');
+        ].push('repeat');
       }
     }
   }
 
-  organize60To90() {}
+  organize60To90() {
+    if (this.min50 && this.userLearningAbility >= 0.75) {
+      this.organize60To90_075_1();
+    }
+
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '25min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organize60To90_075_1() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+          '50min'
+        );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
 
   organize90To120() {}
 
-  organize120() {}
+  organize120() {
+    if (this.min50 && this.userLearningAbility >= 0.75) {
+      this.organizeTo120_075_1();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0.5 &&
+      this.userLearningAbility < 0.75
+    ) {
+      this.organizeTo120_050_075();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0.25 &&
+      this.userLearningAbility < 0.5
+    ) {
+      this.organizeTo120_025_050();
+    }
+    if (
+      this.min50 &&
+      this.userLearningAbility >= 0 &&
+      this.userLearningAbility < 0.25
+    ) {
+      this.organize120False();
+    }
+    if (!this.min50) {
+      this.organize120False();
+    }
+  }
+
+  organizeTo120_075_1() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 2; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '50min'
+          );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  organizeTo120_050_075() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 2; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < 1; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 4)]
+        ].push('50min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(5, 6)]
+        ].push('50min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+    this.checkModules();
+  }
+
+  organizeTo120_025_050() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 2; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < 1; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 4)]
+        ].push('50min');
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(5, 6)]
+        ].push('25min');
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+    this.checkModules();
+  }
+
+  organize120False() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        for (let runTime = 0; runTime < 4; runTime++)
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].push(
+            '25min'
+          );
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      for (let number = 0; number < 4; number++) {
+        this.plan[this.plan.weekNumbers[number]][
+          this.plan.days[this.getRndInteger(1, 6)]
+        ].push('repeat');
+      }
+    }
+  }
+
+  checkModules() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        if (
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].length < 3
+        ) {
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].splice(
+            3,
+            0,
+            '25min',
+            '25min'
+          );
+        }
+      }
+    }
+  }
+
+  /**
+   * * If the time per day exceeds 60 minutes a break is inserted.
+   */
+  checkPause() {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        if (
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].length > 3
+        ) {
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].splice(
+            3,
+            0,
+            'eat'
+          );
+        }
+        if (
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].length > 6
+        ) {
+          this.plan[this.plan.weekNumbers[number]][this.plan.days[i]].splice(
+            6,
+            0,
+            'eat'
+          );
+        }
+      }
+    }
+  }
 
   /**
    *
