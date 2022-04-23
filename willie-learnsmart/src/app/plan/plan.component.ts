@@ -73,6 +73,20 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
+  test(tes) {
+    console.log(tes);
+  }
+
+  startDragging(draggedModule) {
+    console.log(draggedModule);
+  }
+
+  moveTo(test) {}
+
+  allowDrop(ev) {
+    ev.preventDefault();
+  }
+
   /**
    * * executes the different functions
    */

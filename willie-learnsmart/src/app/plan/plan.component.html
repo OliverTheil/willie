@@ -1,23 +1,13 @@
 <div class="plan">
   <section class="margin--tb--4rem borderRadius--16">
     <div>
-      <h1 *ngIf="this.plan.strict">
-        And here is your plan {{ this.answers.userName }} !
-      </h1>
-      <h1 *ngIf="!this.plan.strict">
-        And here is your recommendation {{ this.answers.userName }} !
-      </h1>
+      <h1>And here is your plan {{ this.answers.userName }} !</h1>
     </div>
     <div>
-      <div *ngIf="this.plan.strict">
+      <div>
         First of all: <br />
         The complete plan works with the Pomodoro technique. But willie, what is
         pomodoro?
-      </div>
-      <div *ngIf="!this.plan.strict">
-        You only got a recommendation but you should still know the following.
-        <br />
-        The best way to learn things goes with the pomodoro technique.
       </div>
       <br />
       It's a time management from Francesco Cirillo (1980) and stands for
@@ -153,14 +143,25 @@
     class="plan__complete effect"
   >
     <div>{{ this.plan.weeks[i] }}</div>
-    <div *ngFor="let day of this.plan.days; let d = index" class="plan__day">
+    <div
+      *ngFor="let day of this.plan.days; let d = index"
+      class="plan__day"
+      id="{{ this.plan.weekNumbers[i] }}{{ this.plan.days[d] }}"
+      ondrop="moveTo('week1Monday')"
+    >
       <p #day>{{ this.plan.days[d] }}</p>
       <div class="plan__allSessions">
-        <div *ngFor="let module of this.plan[this.plan.weekNumbers[i]][day]">
+        <div
+          id="{{ this.plan.weeks[i] }}{{ this.plan.days[d] }}"
+          *ngFor="let module of this.plan[this.plan.weekNumbers[i]][day]"
+          ondragover="allowDrop(event)"
+        >
           <div
             *ngIf="module == '25min'"
+            ondrag="test('25min')"
             draggable="true"
             class="plan__singleSession min25 effect"
+            value="25min"
           >
             25min
           </div>
@@ -168,6 +169,7 @@
             *ngIf="module == '50min'"
             draggable="true"
             class="plan__singleSession min50 effect"
+            value="50min"
           >
             50min
           </div>
@@ -175,6 +177,7 @@
             *ngIf="module == 'eat'"
             draggable="true"
             class="plan__singleSession icon__div icon__eat"
+            value="eat"
           >
             <i class="fa-solid fa-apple-whole"></i>
           </div>
@@ -182,6 +185,7 @@
             *ngIf="module == 'repeat'"
             draggable="true"
             class="plan__singleSession icon__div icon__repeat"
+            value="repeat"
           >
             <i class="fa-solid fa-arrow-rotate-right"></i>
           </div>
@@ -189,107 +193,14 @@
             *ngIf="module == 'optional'"
             draggable="true"
             class="plan__singleSession icon__div icon__optional"
+            value="optional"
           >
             <i class="fa-solid fa-circle-notch"></i>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="plan__day">
-      <p>Tuesday</p>
-      <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-      </div>
-    </div>
-    <div class="plan__day">
-      <p>Wednesday</p>
-      <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-      </div>
-    </div>
-    <div class="plan__day">
-      <p>Thursday</p>
-      <div draggable="true" class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-      </div>
-    </div>
-    <div class="plan__day">
-      <p>Friday</p>
-      <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-      </div>
-    </div>
-    <div class="plan__day">
-      <p>Saturday</p>
-      <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-      </div>
-    </div>
-    <div class="plan__day">
-      <p>Sunday</p>
-      <div class="plan__allSessions">
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min50 effect">
-          50min
-        </div>
-        <div draggable="true" class="plan__singleSession min25 effect">
-          25min
-        </div>
-      </div>
-    </div> -->
   </section>
-
   <section routerLink="" class="backButton effect">
     <p class="backLink">You don't like your plan? Make a new one!</p>
   </section>

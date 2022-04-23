@@ -265,32 +265,6 @@
   </div>
 </section>
 
-<section>
-  <p class="questions__singleQuestion">
-    The last question! Do you want an exact and fixed plan or just a
-    recommendation?
-  </p>
-</section>
-
-<section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button
-      [class.enabled]="answers.planned"
-      [class.disabled]="!answers.planned"
-      (click)="answers.planned = true"
-    ></button>
-    <p>An exact Plan - Every day is planned.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button
-      [class.enabled]="!answers.planned"
-      [class.disabled]="answers.planned"
-      (click)="answers.planned = false"
-    ></button>
-    <p>Just a recommendation.</p>
-  </div>
-</section>
-
 <section (click)="createPlanBtn()" routerLink="/plan" class="createButton">
   <p class="questions__singleQuestion">Click here to create your plan!</p>
 </section>
