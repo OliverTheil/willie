@@ -44,6 +44,8 @@ export class PlanComponent implements OnInit {
   min50 = false;
 
   changeDay = false;
+  addModuleActive = false;
+  deleteModuleActive = false;
 
   constructor() {}
 
@@ -82,10 +84,75 @@ export class PlanComponent implements OnInit {
     document.getElementById(clickedDay).style.display = 'none';
   }
 
-  addModule(week, day) {}
+  addModule() {
+    if (!this.addModuleActive) {
+      document.getElementById('add').classList.add('highlighted');
+      this.addModuleActive = true;
+      this.deleteModuleActive = false;
+    } else if (this.addModuleActive) {
+      document.getElementById('add').classList.remove('highlighted');
+      this.addModuleActive = false;
+      this.deleteModuleActive = false;
+    }
+  }
 
-  deleteModule(week, day) {
-    console.log('test');
+  deleteModule() {
+    if (!this.deleteModuleActive) {
+      document.getElementById('delete').classList.add('highlighted');
+      this.deleteModuleActive = true;
+      this.addModuleActive = false;
+    } else if (this.deleteModuleActive) {
+      document.getElementById('delete').classList.remove('highlighted');
+      this.deleteModuleActive = false;
+      this.addModuleActive = false;
+    }
+  }
+
+  clicked50(week, day) {
+    if (this.addModuleActive) {
+      this.plan[week][day].push('50min');
+    }
+    if (this.deleteModuleActive) {
+      this.plan[week][day].splice(this.plan[week][day].indexOf('50min'), 1);
+    }
+    this.checkChangedDay(week, day);
+  }
+
+  clicked25(week, day) {
+    if (this.addModuleActive) {
+      this.plan[week][day].push('25min');
+    }
+    if (this.deleteModuleActive) {
+      this.plan[week][day].splice(this.plan[week][day].indexOf('25min'), 1);
+    }
+    this.checkChangedDay(week, day);
+  }
+
+  clickedRepeat(week, day) {
+    if (this.addModuleActive) {
+      this.plan[week][day].push('repeat');
+    }
+    if (this.deleteModuleActive) {
+      this.plan[week][day].splice(this.plan[week][day].indexOf('repeat'), 1);
+    }
+    this.checkChangedDay(week, day);
+  }
+
+  checkChangedDay(week, day) {
+    let count = 0;
+
+    this.plan[week][day].forEach((element) => {
+      if (element == 'eat') {
+        count += 1;
+      }
+    });
+    console.log(count);
+    if (this.plan[week][day].length > 3 && count == 0) {
+      this.plan[week][day].splice(3, 0, 'eat');
+    }
+    if (this.plan[week][day].length > 5 && count < 2) {
+      this.plan[week][day].splice(6, 0, 'eat');
+    }
   }
 
   /**

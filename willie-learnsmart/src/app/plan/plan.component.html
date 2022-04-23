@@ -188,13 +188,15 @@
         class="customizePlan hide"
       >
         <div
-          (click)="addModule(this.plan.weekNumbers[i], day)"
+          id="add"
+          (click)="addModule()"
           class="margin--lr--32 plan__singleSession icon__div add hover"
         >
           <i class="fa-solid fa-plus"></i>
         </div>
         <div
-          (click)="deleteModule(this.plan.weekNumbers[i], day)"
+          id="delete"
+          (click)="deleteModule()"
           class="margin--lr--32 plan__singleSession icon__div delete hover"
         >
           <i class="fa-solid fa-minus"></i>
@@ -207,14 +209,21 @@
         </div>
 
         <div class="moduleContainer">
-          <div class="margin--lr--32 plan__singleSession min50 effect">
+          <div
+            (click)="clicked50(this.plan.weekNumbers[i], day)"
+            class="margin--lr--32 plan__singleSession min50 effect hover"
+          >
             50min
           </div>
-          <div class="margin--lr--32 plan__singleSession min25 effect">
+          <div
+            (click)="clicked25(this.plan.weekNumbers[i], day)"
+            class="margin--lr--32 plan__singleSession min25 effect hover"
+          >
             25min
           </div>
           <div
-            class="margin--lr--32 plan__singleSession icon__div icon__repeat"
+            (click)="clickedRepeat(this.plan.weekNumbers[i], day)"
+            class="margin--lr--32 plan__singleSession icon__div icon__repeat hover"
           >
             <i class="fa-solid fa-arrow-rotate-right"></i>
           </div>
