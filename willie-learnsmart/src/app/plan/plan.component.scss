@@ -54,12 +54,21 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  width: 100%;
+  height: 100%;
 }
 
 .plan__complete {
   border-radius: 16px;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.plan__allSessions__container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -78,6 +87,11 @@ h1 {
   border-right: 1px solid rgba(0, 0, 0, 0.459);
   p {
     margin: 16px;
+  }
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    filter: brightness(1.1);
   }
 }
 
@@ -108,6 +122,7 @@ h1 {
 
 .icon__hand {
   i {
+    padding-left: 20px;
     color: black;
     font-size: 50px;
   }
@@ -125,12 +140,6 @@ h1 {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-
-  &:hover {
-    cursor: grab;
-    transform: scale(1.05);
-    filter: brightness(1.2);
-  }
 }
 
 .effect {
@@ -153,4 +162,19 @@ h1 {
   width: 80px;
   height: 40px;
   background: rgba(133, 18, 209, 0.589);
+}
+
+.customizePlan {
+  width: 96%;
+  height: 100%;
+  border-radius: 8px;
+  background: rgb(143, 216, 8);
+
+  i {
+    color: black;
+  }
+}
+
+.column {
+  flex-direction: column;
 }

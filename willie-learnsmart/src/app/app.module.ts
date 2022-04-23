@@ -7,6 +7,8 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 import { PlanComponent } from './plan/plan.component';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,13 @@ import { FormsModule } from '@angular/forms';
     PlanComponent,
     MainComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

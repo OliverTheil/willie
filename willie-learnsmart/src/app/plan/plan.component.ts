@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Answers } from '../models/answers.class';
 import { Plan } from '../models/plan.class';
-
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
@@ -44,6 +43,8 @@ export class PlanComponent implements OnInit {
   min25 = true;
   min50 = false;
 
+  changeDay = false;
+
   constructor() {}
 
   ngOnInit(): void {
@@ -73,19 +74,7 @@ export class PlanComponent implements OnInit {
     this.checkPlan();
   }
 
-  test(tes) {
-    console.log(tes);
-  }
-
-  startDragging(draggedModule) {
-    console.log(draggedModule);
-  }
-
-  moveTo(test) {}
-
-  allowDrop(ev) {
-    ev.preventDefault();
-  }
+  openDay() {}
 
   /**
    * * executes the different functions

@@ -33,30 +33,17 @@
     <div class="plan__icons__exp__div">
       Explanation of the symbols:
       <div class="plan__day">
-        <div
-          draggable="true"
-          class="margin--lr--32 plan__singleSession min50 effect"
-        >
-          50min
-        </div>
+        <div class="margin--lr--32 plan__singleSession min50 effect">50min</div>
         <p class="plan__icons__exp">
           Learn 50 minutes, then a 10 minute break.
         </p>
       </div>
       <div class="plan__day">
-        <div
-          draggable="true"
-          class="margin--lr--32 plan__singleSession min25 effect"
-        >
-          25min
-        </div>
+        <div class="margin--lr--32 plan__singleSession min25 effect">25min</div>
         <p class="plan__icons__exp">Learn 25 minutes, then a 5 minute break.</p>
       </div>
       <div class="plan__day">
-        <div
-          draggable="true"
-          class="margin--lr--32 plan__singleSession icon__div icon__eat"
-        >
+        <div class="margin--lr--32 plan__singleSession icon__div icon__eat">
           <i class="fa-solid fa-apple-whole"></i>
         </div>
         <p class="plan__icons__exp">
@@ -64,10 +51,7 @@
         </p>
       </div>
       <div class="plan__day">
-        <div
-          draggable="true"
-          class="margin--lr--32 plan__singleSession icon__div icon__repeat"
-        >
+        <div class="margin--lr--32 plan__singleSession icon__div icon__repeat">
           <i class="fa-solid fa-arrow-rotate-right"></i>
         </div>
         <p class="plan__icons__exp">
@@ -76,7 +60,6 @@
       </div>
       <div class="plan__day">
         <div
-          draggable="true"
           class="margin--lr--32 plan__singleSession icon__div icon__optional"
         >
           <i class="fa-solid fa-circle-notch"></i>
@@ -130,10 +113,11 @@
       </p>
     </div>
     <div class="plan__day icon__hand">
-      <i class="fa-solid fa-hand"></i>
+      <i class="fa-solid fa-arrow-pointer"></i>
       <p class="plan__icons__exp">
         I know your max time, but i will add someday an extra module. If you
-        don't like that or your plan, customize it! Grab or delete a session.
+        don't like that or your plan, customize it! Click on the day and add or
+        delete a module.
       </p>
     </div>
   </section>
@@ -145,60 +129,69 @@
     <div>{{ this.plan.weeks[i] }}</div>
     <div
       *ngFor="let day of this.plan.days; let d = index"
-      class="plan__day"
-      id="{{ this.plan.weekNumbers[i] }}{{ this.plan.days[d] }}"
-      ondrop="moveTo('week1Monday')"
+      class="plan__day column"
+      id="{{ i }}{{ day }}"
+      (click)="!changeDay ? (changeDay = true) : (changeDay = false)"
     >
-      <p #day>{{ this.plan.days[d] }}</p>
-      <div class="plan__allSessions">
-        <div
-          id="{{ this.plan.weeks[i] }}{{ this.plan.days[d] }}"
-          *ngFor="let module of this.plan[this.plan.weekNumbers[i]][day]"
-          ondragover="allowDrop(event)"
-        >
+      <div class="plan__allSessions__container">
+        <p #day>{{ this.plan.days[d] }}</p>
+        <div class="plan__allSessions">
           <div
-            *ngIf="module == '25min'"
-            ondrag="test('25min')"
-            draggable="true"
-            class="plan__singleSession min25 effect"
-            value="25min"
+            *ngFor="let module of this.plan[this.plan.weekNumbers[i]][day]"
+            (click)="(module.splice)"
           >
-            25min
-          </div>
-          <div
-            *ngIf="module == '50min'"
-            draggable="true"
-            class="plan__singleSession min50 effect"
-            value="50min"
-          >
-            50min
-          </div>
-          <div
-            *ngIf="module == 'eat'"
-            draggable="true"
-            class="plan__singleSession icon__div icon__eat"
-            value="eat"
-          >
-            <i class="fa-solid fa-apple-whole"></i>
-          </div>
-          <div
-            *ngIf="module == 'repeat'"
-            draggable="true"
-            class="plan__singleSession icon__div icon__repeat"
-            value="repeat"
-          >
-            <i class="fa-solid fa-arrow-rotate-right"></i>
-          </div>
-          <div
-            *ngIf="module == 'optional'"
-            draggable="true"
-            class="plan__singleSession icon__div icon__optional"
-            value="optional"
-          >
-            <i class="fa-solid fa-circle-notch"></i>
+            <div
+              *ngIf="module == '25min'"
+              class="plan__singleSession min25 effect"
+              value="25min"
+            >
+              {{ module }}
+            </div>
+            <div
+              *ngIf="module == '50min'"
+              class="plan__singleSession min50 effect"
+              value="50min"
+            >
+              {{ module }}
+            </div>
+            <div
+              *ngIf="module == 'eat'"
+              class="plan__singleSession icon__div icon__eat"
+              value="eat"
+            >
+              <i class="fa-solid fa-apple-whole"></i>
+            </div>
+            <div
+              *ngIf="module == 'repeat'"
+              class="plan__singleSession icon__div icon__repeat"
+              value="repeat"
+            >
+              <i class="fa-solid fa-arrow-rotate-right"></i>
+            </div>
+            <div
+              *ngIf="module == 'optional'"
+              class="plan__singleSession icon__div icon__optional"
+              value="optional"
+            >
+              <i class="fa-solid fa-circle-notch"></i>
+            </div>
           </div>
         </div>
       </div>
+
+      <section class="customizePlan" [class.hide]="!changeDay">
+        <div class="margin--lr--32 plan__singleSession icon__div">
+          <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="margin--lr--32 plan__singleSession icon__div">
+          <i class="fa-solid fa-minus"></i>
+        </div>
+        <div class="margin--lr--32 plan__singleSession min50 effect">50min</div>
+        <div class="margin--lr--32 plan__singleSession min25 effect">25min</div>
+        <div class="margin--lr--32 plan__singleSession icon__div icon__repeat">
+          <i class="fa-solid fa-arrow-rotate-right"></i>
+        </div>
+      </section>
     </div>
   </section>
   <section routerLink="" class="backButton effect">
