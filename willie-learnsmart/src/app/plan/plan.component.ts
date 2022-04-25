@@ -80,62 +80,65 @@ export class PlanComponent implements OnInit {
     document.getElementById(clickedDay).style.display = 'flex';
   }
 
-  closeWindow(clickedDay) {
+  closeWindow(week, day, clickedDay) {
+    this.deleteModuleActive = false;
+    this.addModuleActive = false;
+    document
+      .getElementById('delete' + week + day)
+      .classList.remove('highlighted');
+    document.getElementById('add' + week + day).classList.remove('highlighted');
     document.getElementById(clickedDay).style.display = 'none';
   }
 
-  addModule() {
+  addModule(week, day) {
+    this.deleteModuleActive = false;
+    document
+      .getElementById('delete' + week + day)
+      .classList.remove('highlighted');
     if (!this.addModuleActive) {
-      document.getElementById('add').classList.add('highlighted');
+      document.getElementById('add' + week + day).classList.add('highlighted');
       this.addModuleActive = true;
-      this.deleteModuleActive = false;
     } else if (this.addModuleActive) {
-      document.getElementById('add').classList.remove('highlighted');
+      document
+        .getElementById('add' + week + day)
+        .classList.remove('highlighted');
       this.addModuleActive = false;
-      this.deleteModuleActive = false;
     }
   }
 
-  deleteModule() {
+  deleteModule(week, day) {
+    this.addModuleActive = false;
+    document.getElementById('add' + week + day).classList.remove('highlighted');
     if (!this.deleteModuleActive) {
-      document.getElementById('delete').classList.add('highlighted');
+      document
+        .getElementById('delete' + week + day)
+        .classList.add('highlighted');
       this.deleteModuleActive = true;
-      this.addModuleActive = false;
     } else if (this.deleteModuleActive) {
-      document.getElementById('delete').classList.remove('highlighted');
+      document
+        .getElementById('delete' + week + day)
+        .classList.remove('highlighted');
       this.deleteModuleActive = false;
-      this.addModuleActive = false;
     }
   }
 
-  clicked50(week, day) {
-    if (this.addModuleActive) {
-      this.plan[week][day].push('50min');
-    }
+  chooseModule(week, day, moduleNumber) {
     if (this.deleteModuleActive) {
-      this.plan[week][day].splice(this.plan[week][day].indexOf('50min'), 1);
+      this.plan[week][day].splice(moduleNumber, 1);
     }
-    this.checkChangedDay(week, day);
   }
 
-  clicked25(week, day) {
-    if (this.addModuleActive) {
-      this.plan[week][day].push('25min');
-    }
-    if (this.deleteModuleActive) {
-      this.plan[week][day].splice(this.plan[week][day].indexOf('25min'), 1);
-    }
-    this.checkChangedDay(week, day);
+  deleteDay(week, day) {
+    this.plan[week][day] = [];
   }
 
-  clickedRepeat(week, day) {
+  clickedModule(clickedModule, week, day) {
     if (this.addModuleActive) {
-      this.plan[week][day].push('repeat');
+      this.plan[week][day].push(clickedModule);
     }
-    if (this.deleteModuleActive) {
-      this.plan[week][day].splice(this.plan[week][day].indexOf('repeat'), 1);
+    if (clickedModule != 'eat') {
+      this.checkChangedDay(week, day);
     }
-    this.checkChangedDay(week, day);
   }
 
   checkChangedDay(week, day) {
@@ -146,12 +149,17 @@ export class PlanComponent implements OnInit {
         count += 1;
       }
     });
-    console.log(count);
     if (this.plan[week][day].length > 3 && count == 0) {
       this.plan[week][day].splice(3, 0, 'eat');
     }
     if (this.plan[week][day].length > 5 && count < 2) {
       this.plan[week][day].splice(6, 0, 'eat');
+    }
+    if (this.plan[week][day].length > 7 && count < 3) {
+      this.plan[week][day].splice(9, 0, 'eat');
+    }
+    if (this.plan[week][day].length > 10) {
+      console.log('bitte denk an deine Gesundheit!');
     }
   }
 

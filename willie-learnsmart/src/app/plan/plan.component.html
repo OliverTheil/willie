@@ -141,8 +141,11 @@
         <p #day>{{ this.plan.days[d] }}</p>
         <div class="plan__allSessions">
           <div
-            *ngFor="let module of this.plan[this.plan.weekNumbers[i]][day]"
-            draggable="true"
+            *ngFor="
+              let module of this.plan[this.plan.weekNumbers[i]][day];
+              let moduleNumber = index
+            "
+            (click)="chooseModule(this.plan.weekNumbers[i], day, moduleNumber)"
           >
             <div
               *ngIf="module == '25min'"
@@ -188,44 +191,64 @@
         class="customizePlan hide"
       >
         <div
-          id="add"
-          (click)="addModule()"
+          id="add{{ this.plan.weekNumbers[i] }}{{ day }}"
+          (click)="addModule(this.plan.weekNumbers[i], day)"
           class="margin--lr--32 plan__singleSession icon__div add hover"
         >
           <i class="fa-solid fa-plus"></i>
         </div>
         <div
-          id="delete"
-          (click)="deleteModule()"
+          id="delete{{ this.plan.weekNumbers[i] }}{{ day }}"
+          (click)="deleteModule(this.plan.weekNumbers[i], day)"
           class="margin--lr--32 plan__singleSession icon__div delete hover"
         >
           <i class="fa-solid fa-minus"></i>
         </div>
+        <div
+          id="deleteDay"
+          (click)="deleteDay(this.plan.weekNumbers[i], day)"
+          class="margin--lr--32 plan__singleSession icon__div deleteDay hover"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </div>
+
         <div class="close hover">
           <i
-            (click)="closeWindow(this.plan.weekNumbers[i] + day)"
+            (click)="
+              closeWindow(
+                this.plan.weekNumbers[i],
+                day,
+                this.plan.weekNumbers[i] + day
+              )
+            "
             class="fa-regular fa-circle-xmark"
           ></i>
         </div>
 
         <div class="moduleContainer">
           <div
-            (click)="clicked50(this.plan.weekNumbers[i], day)"
+            (click)="clickedModule('50min', this.plan.weekNumbers[i], day)"
             class="margin--lr--32 plan__singleSession min50 effect hover"
           >
             50min
           </div>
           <div
-            (click)="clicked25(this.plan.weekNumbers[i], day)"
+            (click)="clickedModule('25min', this.plan.weekNumbers[i], day)"
             class="margin--lr--32 plan__singleSession min25 effect hover"
           >
             25min
           </div>
           <div
-            (click)="clickedRepeat(this.plan.weekNumbers[i], day)"
+            (click)="clickedModule('repeat', this.plan.weekNumbers[i], day)"
             class="margin--lr--32 plan__singleSession icon__div icon__repeat hover"
           >
             <i class="fa-solid fa-arrow-rotate-right"></i>
+          </div>
+          <div
+            (click)="clickedModule('eat', this.plan.weekNumbers[i], day)"
+            class="margin--lr--32 plan__singleSession icon__div icon__eat hover"
+          >
+            <i class="fa-solid fa-apple-whole"></i>
           </div>
         </div>
       </section>
