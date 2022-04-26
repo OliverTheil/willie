@@ -55,17 +55,30 @@ export class PlanComponent implements OnInit {
     let retrievedAnswers = localStorage.getItem('answers');
     this.answers = JSON.parse(retrievedAnswers);
     this.getValues();
-    this.calculationPlan();
+    this.calculationUser();
+    if (localStorage.getItem('plan') === null) {
+      let emptyPlan = this.plan;
+      localStorage.setItem('plan', JSON.stringify(emptyPlan));
+      this.calculationPlan();
+    } else {
+      let retrievedPlan = localStorage.getItem('plan');
+      this.plan = JSON.parse(retrievedPlan);
+    }
   }
 
-  calculationPlan() {
+  calculationUser() {
     this.calculateMinutes();
     this.calculateMinutesPerDay();
     this.setUserAbility();
+  }
+
+  calculationPlan() {
     this.organizePlan();
     this.checkGoodDays();
     this.checkNotPossibleDays();
+    this.checkPlan();
     this.checkPause();
+    this.savePlan();
   }
 
   setUserAbility() {
@@ -73,10 +86,25 @@ export class PlanComponent implements OnInit {
     this.checkTopicLevel();
     this.checkUserFeeling();
     this.calculateLearningAbility();
-    this.checkPlan();
+  }
+
+  savePlan() {
+    let plan = this.plan;
+    localStorage.setItem('plan', JSON.stringify(plan));
+  }
+
+  resetPlan() {
+    window.localStorage.removeItem('plan');
   }
 
   thisDay(clickedDay) {
+    for (let i = 0; i < this.plan.days.length; i++) {
+      for (let number = 0; number < 4; number++) {
+        document.getElementById(
+          this.plan.weekNumbers[number] + [this.plan.days[i]]
+        ).style.display = 'none';
+      }
+    }
     document.getElementById(clickedDay).style.display = 'flex';
   }
 
@@ -88,6 +116,7 @@ export class PlanComponent implements OnInit {
       .classList.remove('highlighted');
     document.getElementById('add' + week + day).classList.remove('highlighted');
     document.getElementById(clickedDay).style.display = 'none';
+    this.savePlan();
   }
 
   addModule(week, day) {
@@ -126,10 +155,12 @@ export class PlanComponent implements OnInit {
     if (this.deleteModuleActive) {
       this.plan[week][day].splice(moduleNumber, 1);
     }
+    this.savePlan();
   }
 
   deleteDay(week, day) {
     this.plan[week][day] = [];
+    this.savePlan();
   }
 
   clickedModule(clickedModule, week, day) {
@@ -139,6 +170,7 @@ export class PlanComponent implements OnInit {
     if (clickedModule != 'eat') {
       this.checkChangedDay(week, day);
     }
+    this.savePlan();
   }
 
   checkChangedDay(week, day) {
@@ -152,15 +184,16 @@ export class PlanComponent implements OnInit {
     if (this.plan[week][day].length > 3 && count == 0) {
       this.plan[week][day].splice(3, 0, 'eat');
     }
-    if (this.plan[week][day].length > 5 && count < 2) {
-      this.plan[week][day].splice(6, 0, 'eat');
+    if (this.plan[week][day].length > 6 && count < 2) {
+      this.plan[week][day].splice(7, 0, 'eat');
     }
-    if (this.plan[week][day].length > 7 && count < 3) {
-      this.plan[week][day].splice(9, 0, 'eat');
+    if (this.plan[week][day].length > 9 && count < 3) {
+      this.plan[week][day].splice(10, 0, 'eat');
     }
-    if (this.plan[week][day].length > 10) {
+    if (this.plan[week][day].length > 12) {
       console.log('bitte denk an deine Gesundheit!');
     }
+    this.savePlan();
   }
 
   /**
