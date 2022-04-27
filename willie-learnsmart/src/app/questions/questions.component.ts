@@ -1,9 +1,8 @@
 import { Component, OnInit, ɵisListLikeIterable } from '@angular/core';
 import { Answers } from '../models/answers.class';
 import { Plan } from '../models/plan.class';
-import Swal from 'sweetalert2';
 import { ErrorcatchService } from '../errorcatch.service';
-import { getCurrencySymbol } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-questions',
@@ -14,7 +13,7 @@ export class QuestionsComponent implements OnInit {
   answers: Answers;
   plan: Plan;
 
-  constructor(private errorCatch: ErrorcatchService) {}
+  constructor(private errorCatch: ErrorcatchService, private router: Router) {}
 
   ngOnInit(): void {
     this.answers = new Answers();
@@ -28,9 +27,12 @@ export class QuestionsComponent implements OnInit {
   }
 
   createPlanBtn() {
-    this.errorCatch.checkAnswers();
     let answers = this.answers;
     localStorage.setItem('answers', JSON.stringify(answers));
+    this.errorCatch.test();
+    if (this.errorCatch.noError == true) {
+      this.router.navigate(['/plan']);
+    }
   }
 
   pushNotPossibleDays(days: string) {

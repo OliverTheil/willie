@@ -26,7 +26,6 @@
   <input
     placeholder="age"
     [(ngModel)]="answers.userAge"
-    min="6"
     maxlength="3"
     type="number"
   />
@@ -265,6 +264,6 @@
   </div>
 </section>
 
-<section (click)="createPlanBtn()" routerLink="/plan" class="createButton">
+<section (click)="createPlanBtn()" class="createButton">
   <p class="questions__singleQuestion">Click here to create your plan!</p>
 </section>

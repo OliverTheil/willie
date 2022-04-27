@@ -100,7 +100,7 @@ export class PlanComponent implements OnInit {
 
   thisDay(clickedDay) {
     for (let i = 0; i < this.plan.days.length; i++) {
-      for (let number = 0; number < 4; number++) {
+      for (let number = 0; number < this.plan.weeks.length; number++) {
         document.getElementById(
           this.plan.weekNumbers[number] + [this.plan.days[i]]
         ).style.display = 'none';
