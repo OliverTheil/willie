@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Answers } from '../models/answers.class';
 import { Plan } from '../models/plan.class';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
@@ -98,6 +99,9 @@ export class PlanComponent implements OnInit {
     window.localStorage.removeItem('plan');
   }
 
+  /**
+   * * Open the edit window of the clicked day
+   */
   thisDay(clickedDay) {
     for (let i = 0; i < this.plan.days.length; i++) {
       for (let number = 0; number < this.plan.weeks.length; number++) {
@@ -119,7 +123,9 @@ export class PlanComponent implements OnInit {
     document.getElementById(clickedDay).style.display = 'none';
     this.savePlan();
   }
-
+  /**
+   * * Starts the add function
+   */
   addModule(week, day) {
     this.deleteModuleActive = false;
     document
@@ -135,7 +141,9 @@ export class PlanComponent implements OnInit {
       this.addModuleActive = false;
     }
   }
-
+  /**
+   * * Starts the delete function
+   */
   deleteModule(week, day) {
     this.addModuleActive = false;
     document.getElementById('add' + week + day).classList.remove('highlighted');
@@ -151,7 +159,9 @@ export class PlanComponent implements OnInit {
       this.deleteModuleActive = false;
     }
   }
-
+  /**
+   * * Deletes the chosen module
+   */
   chooseModule(week, day, moduleNumber) {
     if (this.deleteModuleActive) {
       this.plan[week][day].splice(moduleNumber, 1);
@@ -163,7 +173,9 @@ export class PlanComponent implements OnInit {
     this.plan[week][day] = [];
     this.savePlan();
   }
-
+  /**
+   * * Adds the clicked module
+   */
   clickedModule(clickedModule, week, day) {
     if (this.addModuleActive) {
       this.plan[week][day].push(clickedModule);
@@ -173,7 +185,9 @@ export class PlanComponent implements OnInit {
     }
     this.savePlan();
   }
-
+  /**
+   * * If the user changes a day, the function adds an eat symbol
+   */
   checkChangedDay(week, day) {
     let count = 0;
 
@@ -191,8 +205,16 @@ export class PlanComponent implements OnInit {
     if (this.plan[week][day].length > 9 && count < 3) {
       this.plan[week][day].splice(10, 0, 'eat');
     }
-    if (this.plan[week][day].length > 12) {
-      console.log('bitte denk an deine Gesundheit!');
+    if (this.plan[week][day].length > 11) {
+      Swal.fire({
+        position: 'center',
+        background: 'rgb(134, 202, 8)',
+        icon: 'warning',
+        title: 'Do not overexert yourself!',
+        heightAuto: false,
+        showConfirmButton: false,
+        timer: 3000,
+      });
     }
     this.savePlan();
   }

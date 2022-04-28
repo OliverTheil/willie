@@ -38,6 +38,9 @@ export class ErrorcatchService {
     } else if (this.answers.userTopic.length > 10) {
       this.errorMessage('Please enter a shorter topic!');
       this.noError = false;
+    } else if (this.answers.userGoal.length < 3) {
+      this.errorMessage('Please enter a valid goal!');
+      this.noError = false;
     } else if (this.answers.workPerWeek < 0) {
       this.errorMessage('You cant work less than 0 hours!');
       this.noError = false;
@@ -51,24 +54,17 @@ export class ErrorcatchService {
       this.errorMessage('At least one day!');
       this.noError = false;
     } else if (this.answers.lifePerDay == null) {
-      this.errorMessage('A field is missing!');
+      this.errorMessage('How much time do you need for yourself?');
       this.noError = false;
     } else if (this.answers.minutesPerDay == null) {
-      this.errorMessage('A field is missing!');
+      this.errorMessage('How much time do you have(per day)?');
       this.noError = false;
     } else if (this.answers.maxMinutesPerWeek == null) {
-      this.errorMessage('A field is missing!');
+      this.errorMessage('Whats your max. of time (per week)?');
       this.noError = false;
     } else {
       this.noError = true;
     }
-    // for (let i = 0; i <= this.answers.notPossibleDays.length; i++) {
-    //   if (this.answers.goodDays.includes(this.answers.notPossibleDays[i])) {
-    //     this.errorMessage(
-    //       'Your good and bad days are the same! Please change that.'
-    //     );
-    //   }
-    // }
   }
 
   errorMessage(error) {

@@ -26,6 +26,9 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
+  /**
+   * * The button that starts the calculation of the plan if no error occurs
+   */
   createPlanBtn() {
     let answers = this.answers;
     localStorage.setItem('answers', JSON.stringify(answers));
@@ -35,12 +38,19 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
+  /**
+   * * Push of the not possible days. If the day has already been added, it will be removed again.
+   * * The same with good days. The user can't choose a day two times or choose that a day is good and not possible.
+   */
   pushNotPossibleDays(days: string) {
     let noDay = this.answers.notPossibleDays;
     if (days && !noDay.includes(days)) {
       noDay.push(days);
     } else {
       noDay.splice(noDay.indexOf(days), 1);
+    }
+    if (this.answers.goodDays.includes(days)) {
+      this.answers.goodDays.splice(this.answers.goodDays.indexOf(days), 1);
     }
   }
 
@@ -50,6 +60,12 @@ export class QuestionsComponent implements OnInit {
       goodDays.push(days);
     } else {
       goodDays.splice(goodDays.indexOf(days), 1);
+    }
+    if (this.answers.notPossibleDays.includes(days)) {
+      this.answers.notPossibleDays.splice(
+        this.answers.notPossibleDays.indexOf(days),
+        1
+      );
     }
   }
 }
