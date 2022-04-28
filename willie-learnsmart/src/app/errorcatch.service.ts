@@ -20,7 +20,7 @@ export class ErrorcatchService {
     if (this.answers.userName.length < 3) {
       this.errorMessage('Please enter a valid name!');
       this.noError = false;
-    } else if (this.answers.userName.length > 10) {
+    } else if (this.answers.userName.length > 20) {
       this.errorMessage('Please enter a shorter name!');
       this.noError = false;
     } else if (this.answers.userAge == null) {
@@ -35,11 +35,8 @@ export class ErrorcatchService {
     } else if (this.answers.userTopic.length < 3) {
       this.errorMessage('Please enter a valid topic!');
       this.noError = false;
-    } else if (this.answers.userTopic.length > 10) {
+    } else if (this.answers.userTopic.length > 20) {
       this.errorMessage('Please enter a shorter topic!');
-      this.noError = false;
-    } else if (this.answers.userGoal.length < 3) {
-      this.errorMessage('Please enter a valid goal!');
       this.noError = false;
     } else if (this.answers.workPerWeek < 0) {
       this.errorMessage('You cant work less than 0 hours!');

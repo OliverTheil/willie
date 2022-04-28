@@ -32,22 +32,11 @@
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
-  <p class="questions__singleQuestion">What do you want to learn?</p>
+  <p class="questions__singleQuestion">Which skill do you want to learn?</p>
   <input
-    placeholder="topic"
+    placeholder="skill"
     [(ngModel)]="answers.userTopic"
-    maxlength="14"
-    type="text"
-  />
-</section>
-
-<section class="questions__input margin--b--4rem borderRadius--16">
-  <p class="questions__singleQuestion">What's your goal? Describe!</p>
-  <input
-    placeholder="goal"
-    [(ngModel)]="answers.userGoal"
-    id="userGoal"
-    maxlength="30"
+    maxlength="20"
     type="text"
   />
 </section>
