@@ -42,7 +42,9 @@
 </section>
 
 <section class="questions__input margin--b--4rem borderRadius--16">
-  <p class="questions__singleQuestion">How many hours a week do you work?</p>
+  <p class="questions__singleQuestion">
+    How many hours a week you have to work?
+  </p>
   <input
     [(ngModel)]="answers.workPerWeek"
     placeholder="hours"
@@ -53,7 +55,8 @@
 
 <section>
   <p class="questions__singleQuestion">
-    How much time do you need for yourself / life?
+    How much freetime do you need every day? And don't be afraid. You already
+    have 10 hours a day for sleep, eat and other stuff.
   </p>
 </section>
 
@@ -75,7 +78,7 @@
 
 <section>
   <p class="questions__singleQuestion">
-    Which level do you think has the topic?
+    Which level do you think has your skill? LV1: Easy - LV4: Hard
   </p>
 </section>
 
@@ -109,60 +112,65 @@
 </section>
 
 <section class="scrollable margin--b--4rem">
-  <div class="questions__checkBox">
-    <button
-      [class.disabled]="!answers.learningSlow"
-      [class.enabled]="answers.learningSlow"
-      (click)="answers.learningSlow = true"
-    ></button>
-    <p>I'm slow at learning things.</p>
+  <div>
+    <div class="questions__checkBox">
+      <button
+        [class.disabled]="!answers.learningSlow"
+        [class.enabled]="answers.learningSlow"
+        (click)="answers.learningSlow = true"
+      ></button>
+      <p>I'm slow at learning things</p>
+    </div>
+    <div class="questions__checkBox">
+      <button
+        [class.disabled]="answers.learningSlow"
+        [class.enabled]="!answers.learningSlow"
+        (click)="answers.learningSlow = false"
+      ></button>
+      <p>I'm fast</p>
+    </div>
   </div>
-  <div class="questions__checkBox">
-    <button
-      [class.disabled]="answers.learningSlow"
-      [class.enabled]="!answers.learningSlow"
-      (click)="answers.learningSlow = false"
-    ></button>
-    <p>I'm fast.</p>
+  <div>
+    <div class="questions__checkBox">
+      <button
+        [class.disabled]="answers.learningEnduranceGood"
+        [class.enabled]="!answers.learningEnduranceGood"
+        (click)="answers.learningEnduranceGood = false"
+      ></button>
+      <p>My endurance is rather bad</p>
+    </div>
+    <div class="questions__checkBox">
+      <button
+        [class.disabled]="!answers.learningEnduranceGood"
+        [class.enabled]="answers.learningEnduranceGood"
+        (click)="answers.learningEnduranceGood = true"
+      ></button>
+      <p>I got a big endurance</p>
+    </div>
   </div>
-  <div class="questions__checkBox">
-    <button
-      [class.disabled]="answers.learningEnduranceGood"
-      [class.enabled]="!answers.learningEnduranceGood"
-      (click)="answers.learningEnduranceGood = false"
-    ></button>
-    <p>My endurance is rather bad.</p>
-  </div>
-  <div class="questions__checkBox">
-    <button
-      [class.disabled]="!answers.learningEnduranceGood"
-      [class.enabled]="answers.learningEnduranceGood"
-      (click)="answers.learningEnduranceGood = true"
-    ></button>
-    <p>I got a big endurance.</p>
-  </div>
+  <div>
+    <div class="questions__checkBox">
+      <button
+        [class.disabled]="answers.learningLove"
+        [class.enabled]="!answers.learningLove"
+        (click)="answers.learningLove = false"
+      ></button>
+      <p>I hate learning</p>
+    </div>
 
-  <div class="questions__checkBox">
-    <button
-      [class.disabled]="answers.learningLove"
-      [class.enabled]="!answers.learningLove"
-      (click)="answers.learningLove = false"
-    ></button>
-    <p>I hate learning.</p>
-  </div>
-
-  <div class="questions__checkBox">
-    <button
-      [class.disabled]="!answers.learningLove"
-      [class.enabled]="answers.learningLove"
-      (click)="answers.learningLove = true"
-    ></button>
-    <p>I love learning.</p>
+    <div class="questions__checkBox">
+      <button
+        [class.disabled]="!answers.learningLove"
+        [class.enabled]="answers.learningLove"
+        (click)="answers.learningLove = true"
+      ></button>
+      <p>I love learning</p>
+    </div>
   </div>
 </section>
 
 <section>
-  <p class="questions__singleQuestion">How much time do you have(per day)?</p>
+  <p class="questions__singleQuestion">How long do you want to study a day?</p>
 </section>
 
 <section class="scrollable margin--b--4rem">
@@ -179,7 +187,9 @@
 </section>
 
 <section>
-  <p class="questions__singleQuestion">What's your max. of time (per week)?</p>
+  <p class="questions__singleQuestion">
+    How many hours do you want to study a week?
+  </p>
 </section>
 
 <section class="scrollable margin--b--4rem">

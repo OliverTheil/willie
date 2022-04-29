@@ -1,3 +1,4 @@
+<app-frontpage class="cover"></app-frontpage>
 <div class="plan">
   <section class="margin--tb--4rem borderRadius--16">
     <div class="padding16">
@@ -11,7 +12,7 @@
       <div>
         First of all: <br />
         The complete plan works with the Pomodoro technique. But Willie, what is
-        pomodoro?
+        Pomodoro?
       </div>
       <br />
       It's a time management from Francesco Cirillo (1980) and stands for
@@ -84,8 +85,18 @@
       <p class="plan__icons__exp">
         Your entered data in numbers. From a maximum factor of <b>1</b> you
         reached <b>{{ this.userLearningAbility }}</b
-        >. The higher the number, the easier it is for you to learn the given
-        topic. <br />
+        >. The higher the number, the easier it is for you to learn the skill. A
+        higher factor means more 50 min modules.
+        <br />
+        <br />
+        It's composed of the following factors: <br />
+        <br />
+        - your age <br />
+        - your skill level <br />
+        - Wether are you fast or slow <br />
+        - Your endurance<br />
+        - Wether you love or hate to learn <br />
+        <br />
       </p>
     </div>
     <div class="plan__day noHover paddingLeft">
@@ -117,13 +128,19 @@
         possible.
       </p>
     </div>
-    <div class="plan__day noHover paddingLeft icon__hand">
-      <i class="fa-solid fa-arrow-pointer"></i>
-      <p class="plan__icons__exp">
-        I know your max time, but i will add someday an extra module. If you
-        don't like that or your plan, customize it! Click on the day and
-        add/delete a module or build your own day.
-      </p>
+    <div class="explanation__gif__container">
+      <div class="plan__day noHover paddingLeft icon__hand">
+        <i class="fa-solid fa-arrow-pointer"></i>
+        <p class="plan__icons__exp">
+          I know your max time, but i will add someday an extra module. If you
+          don't like that or your plan, customize it! Click on the day and
+          add/delete a module or build your own day.
+        </p>
+      </div>
+      <img
+        class="explanationGif"
+        src="/willie-learnsmart/assets/video/explanationVideo.gif"
+      />
     </div>
   </section>
 

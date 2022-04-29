@@ -69,6 +69,7 @@ export class PlanComponent implements OnInit {
   }
 
   calculationUser() {
+    this.forceScroll();
     this.calculateMinutes();
     this.calculateMinutesPerDay();
     this.setUserAbility();
@@ -88,6 +89,10 @@ export class PlanComponent implements OnInit {
     this.checkTopicLevel();
     this.checkUserFeeling();
     this.calculateLearningAbility();
+  }
+
+  forceScroll() {
+    window.scroll(0, 0);
   }
 
   savePlan() {
