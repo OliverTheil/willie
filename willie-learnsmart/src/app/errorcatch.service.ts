@@ -33,7 +33,7 @@ export class ErrorcatchService {
       this.errorMessage('You are older than 100?');
       this.noError = false;
     } else if (this.answers.userTopic.length < 3) {
-      this.errorMessage('Please enter a valid topic!');
+      this.errorMessage('Please enter a valid skill!');
       this.noError = false;
     } else if (this.answers.userTopic.length > 20) {
       this.errorMessage('Please enter a shorter topic!');
