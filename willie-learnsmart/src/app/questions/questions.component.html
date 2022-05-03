@@ -65,14 +65,13 @@
     *ngFor="let min of answers.lifePerDaySteps; let i = index"
     class="questions__checkBox"
   >
-    <div class="questions__button__div">
-      <button
-        [class.disabled]="answers.lifePerDay != min"
-        [class.enabled]="answers.lifePerDay == min"
-        (click)="answers.lifePerDay = min"
-      ></button>
-    </div>
-
+    <i
+      class="fa-solid fa-square icon__button"
+      [class.disabled]="answers.lifePerDay != min"
+      [class.enabled]="answers.lifePerDay == min"
+      (click)="answers.lifePerDay = min"
+    >
+    </i>
     <p>
       <b> {{ min / 60 }}</b> hours a day.
     </p>
@@ -90,11 +89,13 @@
     *ngFor="let lv of answers.lvSteps; let i = index"
     class="questions__checkBox"
   >
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.disabled]="answers.level != lv"
       [class.enabled]="answers.level == lv"
       (click)="answers.level = lv"
-    ></button>
+    >
+    </i>
     <p *ngIf="lv == 1">
       <b>LV {{ lv }}</b> : Easy practice, easy to understand.
     </p>
@@ -117,56 +118,68 @@
 <section class="scrollable margin--b--4rem">
   <div>
     <div class="questions__checkBox">
-      <button
+      <i
+        class="fa-solid fa-square icon__button"
         [class.disabled]="!answers.learningSlow"
         [class.enabled]="answers.learningSlow"
         (click)="answers.learningSlow = true"
-      ></button>
+      >
+      </i>
       <p>I'm slow at learning things</p>
     </div>
     <div class="questions__checkBox">
-      <button
+      <i
+        class="fa-solid fa-square icon__button"
         [class.disabled]="answers.learningSlow"
         [class.enabled]="!answers.learningSlow"
         (click)="answers.learningSlow = false"
-      ></button>
+      >
+      </i>
       <p>I'm fast</p>
     </div>
   </div>
   <div>
     <div class="questions__checkBox">
-      <button
+      <i
+        class="fa-solid fa-square icon__button"
         [class.disabled]="answers.learningEnduranceGood"
         [class.enabled]="!answers.learningEnduranceGood"
         (click)="answers.learningEnduranceGood = false"
-      ></button>
+      >
+      </i>
       <p>My endurance is rather bad</p>
     </div>
     <div class="questions__checkBox">
-      <button
+      <i
+        class="fa-solid fa-square icon__button"
         [class.disabled]="!answers.learningEnduranceGood"
         [class.enabled]="answers.learningEnduranceGood"
         (click)="answers.learningEnduranceGood = true"
-      ></button>
+      >
+      </i>
       <p>I got a big endurance</p>
     </div>
   </div>
   <div>
     <div class="questions__checkBox">
-      <button
+      <i
+        class="fa-solid fa-square icon__button"
         [class.disabled]="answers.learningLove"
         [class.enabled]="!answers.learningLove"
         (click)="answers.learningLove = false"
-      ></button>
+      >
+      </i>
       <p>I hate learning</p>
     </div>
 
     <div class="questions__checkBox">
-      <button
+      <i
+        class="fa-solid fa-square icon__button"
         [class.disabled]="!answers.learningLove"
         [class.enabled]="answers.learningLove"
         (click)="answers.learningLove = true"
-      ></button>
+      >
+      </i>
       <p>I love learning</p>
     </div>
   </div>
@@ -178,11 +191,13 @@
 
 <section class="scrollable margin--b--4rem">
   <div *ngFor="let min of answers.minPerDaySteps" class="questions__checkBox">
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.enabled]="answers.minutesPerDay == min"
       [class.disabled]="answers.minutesPerDay != min"
       (click)="answers.minutesPerDay = min"
-    ></button>
+    >
+    </i>
     <p>
       Every day max <b>{{ min / 60 }}</b> hours.
     </p>
@@ -200,11 +215,13 @@
     *ngFor="let min of answers.maxTimePerWeekSteps"
     class="questions__checkBox"
   >
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.enabled]="answers.maxMinutesPerWeek == min"
       [class.disabled]="answers.maxMinutesPerWeek != min"
       (click)="answers.maxMinutesPerWeek = min"
-    ></button>
+    >
+    </i>
     <p>
       <b>{{ min / 60 }}</b> hours.
     </p>
@@ -219,11 +236,13 @@
 
 <section class="scrollable margin--b--4rem">
   <div *ngFor="let button of this.answers.days" class="questions__checkBox">
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.enabled]="answers.notPossibleDays.includes(button)"
       [class.disabled]="!answers.notPossibleDays.includes(button)"
       (click)="pushNotPossibleDays(button)"
-    ></button>
+    >
+    </i>
     <p>{{ button }}</p>
   </div>
 </section>
@@ -234,11 +253,13 @@
 
 <section class="scrollable margin--b--4rem">
   <div *ngFor="let button of this.answers.days" class="questions__checkBox">
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.enabled]="answers.goodDays.includes(button)"
       [class.disabled]="!answers.goodDays.includes(button)"
       (click)="pushGoodDays(button)"
-    ></button>
+    >
+    </i>
     <p>{{ button }}</p>
   </div>
 </section>
@@ -249,19 +270,23 @@
 
 <section class="scrollable margin--b--4rem">
   <div class="questions__checkBox">
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.enabled]="answers.month"
       [class.disabled]="!answers.month"
       (click)="answers.month = true"
-    ></button>
+    >
+    </i>
     <p>Month</p>
   </div>
   <div class="questions__checkBox">
-    <button
+    <i
+      class="fa-solid fa-square icon__button"
       [class.enabled]="!answers.month"
       [class.disabled]="answers.month"
       (click)="answers.month = false"
-    ></button>
+    >
+    </i>
     <p>Week</p>
   </div>
 </section>

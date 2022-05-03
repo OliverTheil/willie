@@ -1,5 +1,6 @@
 .questions__checkBox {
   padding: 20px 20px 20px 0;
+  margin-left: 26px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,18 +48,6 @@
     flex-direction: column;
     justify-content: center;
   }
-}
-
-.enabled {
-  cursor: pointer;
-  transform: scale(1.1);
-  background: rgb(134, 202, 8);
-}
-
-.disabled {
-  background-color: white;
-  border-color: transparent;
-  cursor: pointer;
 }
 
 .scrollable {

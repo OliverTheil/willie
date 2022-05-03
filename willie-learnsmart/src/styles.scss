@@ -190,6 +190,27 @@ button {
   }
 }
 
+.icon__button {
+  margin-right: 26px;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    color: rgb(134, 202, 8) !important;
+  }
+}
+
+.enabled {
+  cursor: pointer;
+  transform: scale(1.1);
+  color: rgb(134, 202, 8) !important;
+}
+
+.disabled {
+  color: white;
+  border-color: transparent;
+  cursor: pointer;
+}
+
 section {
   width: 50%;
   padding: 1.6rem;
