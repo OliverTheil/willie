@@ -65,11 +65,14 @@
     *ngFor="let min of answers.lifePerDaySteps; let i = index"
     class="questions__checkBox"
   >
-    <button
-      [class.disabled]="answers.lifePerDay != min"
-      [class.enabled]="answers.lifePerDay == min"
-      (click)="answers.lifePerDay = min"
-    ></button>
+    <div class="questions__button__div">
+      <button
+        [class.disabled]="answers.lifePerDay != min"
+        [class.enabled]="answers.lifePerDay == min"
+        (click)="answers.lifePerDay = min"
+      ></button>
+    </div>
+
     <p>
       <b> {{ min / 60 }}</b> hours a day.
     </p>
