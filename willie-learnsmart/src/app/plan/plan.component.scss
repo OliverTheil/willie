@@ -89,7 +89,7 @@ h1 {
 }
 
 .plan__day {
-  min-width: 280px;
+  min-width: 220px;
   padding-bottom: 8px;
   width: 95%;
   margin: 8px 16px 8px 16px;
@@ -281,7 +281,8 @@ h1 {
 .moduleContainer {
   margin-top: 50px;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   align-items: center;
 }
 
